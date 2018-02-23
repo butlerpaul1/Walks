@@ -1,12 +1,8 @@
-package com.example.paul.myapplication;
+package com.example.paul.myapplication.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
 
+import com.example.paul.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -112,7 +109,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, MainActivity.class));
 
         } else if (id == R.id.nav_add) {
-            startActivity(new Intent(MainActivity.this, AddWalk.class));
+            startActivity(new Intent(MainActivity.this, Test.class));
 
         } else if (id == R.id.nav_view) {
             startActivity(new Intent(MainActivity.this, ViewWalks.class));
@@ -123,10 +120,12 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_about) {
             signOut();
-        }else if (id == R.id.nav_firestore){
-            startActivity(new Intent(MainActivity.this, Firestore.class));
         }
+        else if (id == R.id.nav_firestore)
+        {
+            startActivity(new Intent(MainActivity.this, Counties.class));
 
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

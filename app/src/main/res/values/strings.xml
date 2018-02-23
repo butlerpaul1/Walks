@@ -60,4 +60,42 @@
     <string name="nav_home">Home</string>
     <string name="nav_view">View</string>
     <string name="nav_add">Add</string>
+    <string name="View_All_Walks">View All Walks</string>
+    <string name="Select_walk_by">Select Walk By County</string>
+
+
+    <string-array name="counties">
+        <item>Antrim</item>
+        <item>Armagh</item>
+        <item>Carlow</item>
+        <item>Cavan</item>
+        <item>Clare</item>
+        <item>Cork</item>
+        <item>Derry</item>
+        <item>Donegal</item>
+        <item>Down</item>
+        <item>Dublin</item>
+        <item>Fermanagh</item>
+        <item>Galway</item>
+        <item>Kerry</item>
+        <item>Kildare</item>
+        <item>Killkenny</item>
+        <item>Laois</item>
+        <item>Leitrim</item>
+        <item>Limerick</item>
+        <item>Lomgford</item>
+        <item>Louth</item>
+        <item>Mayo</item>
+        <item>Meath</item>
+        <item>Monaghan</item>
+        <item>Offaly</item>
+        <item>Roscommon</item>
+        <item>Sligo</item>
+        <item>Tipperary</item>
+        <item>Tyrone</item>
+        <item>Waterford</item>
+        <item>Westmeanth</item>
+        <item>Wexford</item>
+        <item>Wicklow</item>
+    </string-array>
 </resources>

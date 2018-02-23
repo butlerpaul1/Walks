@@ -12,17 +12,17 @@
         <item
             android:id="@+id/nav_view"
             android:icon="@android:drawable/ic_menu_search"
-            android:title="@string/btn_view_walks" />
+            android:title="@string/View_All_Walks" />
 
         <item
             android:id="@+id/nav_add"
             android:icon="@android:drawable/ic_input_add"
-            android:title="@string/btn_add_walk" />
+            android:title="Test Call" />
 
         <item
             android:id="@+id/nav_firestore"
             android:icon="@android:drawable/btn_star_big_on"
-            android:title="Firestore"></item>
+            android:title="@string/Select_walk_by"></item>
     </group>
 
     <item android:title="More">

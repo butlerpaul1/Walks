@@ -1,4 +1,4 @@
-package com.example.paul.myapplication;
+package com.example.paul.myapplication.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
