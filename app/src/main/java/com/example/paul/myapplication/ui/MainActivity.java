@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.widget.ProgressBar;
 
 import com.example.paul.myapplication.R;
+import com.example.paul.myapplication.ui.Firebase.LoginActivity;
+import com.example.paul.myapplication.ui.Firebase.Settings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -109,10 +111,10 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, MainActivity.class));
 
         } else if (id == R.id.nav_add) {
-            startActivity(new Intent(MainActivity.this, Test.class));
+            startActivity(new Intent(MainActivity.this, GetByCounty.class));
 
         } else if (id == R.id.nav_view) {
-            startActivity(new Intent(MainActivity.this, ViewWalks.class));
+            startActivity(new Intent(MainActivity.this, GetAllTrails.class));
 
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent(MainActivity.this, Settings.class));

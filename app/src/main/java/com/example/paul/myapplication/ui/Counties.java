@@ -1,5 +1,6 @@
 package com.example.paul.myapplication.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,6 +24,8 @@ public class Counties extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_counties);
 
+
+
         final String[] counties = getResources().getStringArray(R.array.counties);
         ListView countiesList = (ListView)findViewById(R.id.county_list);
 
@@ -31,11 +34,17 @@ public class Counties extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                String selected = "County:" +counties[i];
-                Toast.makeText(Counties.this, selected,Toast.LENGTH_SHORT).show();
+                String county = counties[i];
+
+                //String selected = "County:" +counties[i];
+                //Toast.makeText(Counties.this, selected,Toast.LENGTH_SHORT).show();
+
+                //pass county to activity
+
+                Intent myIntent = new Intent(Counties.this, GetByCounty.class);
+                myIntent.putExtra("County", county);
+                startActivity(myIntent);
             }
         });
-
-
     }
 }

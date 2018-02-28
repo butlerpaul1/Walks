@@ -15,8 +15,8 @@ public class Trail {
     private String trailName;
     @SerializedName("County")
     private String county;
-    @SerializedName("Length(KM)")
-    private int distance;
+    @SerializedName("Length (Km)")
+    private Double distance;
     @SerializedName("Format")
     private String format;
 
@@ -38,11 +38,11 @@ public class Trail {
         this.county = county;
     }
 
-    public int getDistance() {
+    public Double  getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(Double distance) {
         this.distance = distance;
     }
 
