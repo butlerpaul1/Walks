@@ -42,7 +42,7 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
             trailTitle = (TextView) v.findViewById(R.id.title);
             county = (TextView) v.findViewById(R.id.county);
             format = (TextView) v.findViewById(R.id.format);
-           // distance = (TextView) v.findViewById(R.id.distance);
+            distance = (TextView) v.findViewById(R.id.distance);
 
             v.setClickable(true);
             v.setFocusableInTouchMode(true);
@@ -76,8 +76,7 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
         holder.trailTitle.setText(trails.get(position).getTrailName());
         holder.county.setText(trails.get(position).getCounty());
         holder.format.setText(trails.get(position).getFormat());
-       // holder.distance.setText(trails.get(position).getDistance().toString());
-
+        holder.distance.setText(trails.get(position).getDistance().toString());
     }
 
     @Override
