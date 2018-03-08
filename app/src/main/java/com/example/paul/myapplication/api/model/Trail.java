@@ -18,38 +18,27 @@ public class Trail {
     @SerializedName("Format")
     private String format;
     @SerializedName("Length (Km)")
-    private Double distance;
+    //must be string
+    private String distance;
+    @SerializedName("Trail ID")
+    private String id;
 
+    public String getDistance() {
+        return distance;
+    }
 
     public String getTrailName() {
         return trailName;
     }
-
-    public void setTrailName(String trailName) {
-        this.trailName = trailName;
-    }
-
     public String getCounty() {
         return county;
     }
-
-    public void setCounty(String county) {
-        this.county = county;
-    }
-
-
     public String getFormat() {
         return format;
     }
-
-    public void setFormat(String format) {
-        this.format = format;
-    }
+    public String getId(){return id;}
 
 
-    public Double getDistance() {
-        return distance;
-    }
 
 
 

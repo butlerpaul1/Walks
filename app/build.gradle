@@ -47,6 +47,12 @@ dependencies {
     //logging
     compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
 
+    //mLab
+    compile 'org.mongodb:mongodb-driver:3.6.3'
+
+
+
+
 }
 
 

@@ -2,6 +2,7 @@ package com.example.paul.myapplication.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +29,14 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
 
 
 
-    public static class TrailViewHolder extends RecyclerView.ViewHolder {
+    public static class TrailViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener, View.OnLongClickListener{
         LinearLayout trailsLayout;
         TextView trailTitle;
         TextView county;
         TextView format;
         TextView distance;
+
+        private ItemClickListener mListener;
 
 
         public TrailViewHolder(final View v) {
@@ -47,14 +50,41 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
             v.setClickable(true);
             v.setFocusableInTouchMode(true);
 
+
+            /*
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(v.getContext(), "Position" + Integer.toString(getAdapterPosition()), Toast.LENGTH_LONG).show();
+                    Toast.makeText(v.getContext(), "Trail ID" + Integer.toString(getAdapterPosition()+1), Toast.LENGTH_LONG).show();
                 }
             });
+
+            */
+
+            v.setOnClickListener(this);
+
+            v.setOnLongClickListener(this);
+
+
         }
 
+        public void setClickListener(ItemClickListener listener) {
+            this.mListener = listener;
+        }
+
+        @Override public void onClick(View view) {
+            mListener.onClickItem(getLayoutPosition());
+        }
+
+        @Override public boolean onLongClick(View view) {
+            mListener.onLongClickItem(getLayoutPosition());
+            return true;
+        }
+    }
+    public interface ItemClickListener {
+        void onClickItem(int pos);
+
+        void onLongClickItem(int pos);
     }
 
     public TrailAdapter(List<Trail> trails, int rowLayout, Context context) {
@@ -73,10 +103,28 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
 
     @Override
     public void onBindViewHolder(TrailViewHolder holder, final int position) {
+
+        final Trail trail = trails.get(position);
+
         holder.trailTitle.setText(trails.get(position).getTrailName());
         holder.county.setText(trails.get(position).getCounty());
         holder.format.setText(trails.get(position).getFormat());
-        holder.distance.setText(trails.get(position).getDistance().toString());
+        holder.distance.setText(trails.get(position).getDistance());
+
+
+
+        //get item id on click, and pass to new activity
+        holder.setClickListener(new ItemClickListener() {
+            @Override public void onClickItem(int pos) {
+                Toast.makeText(context, "ID: " + trail.getId(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override public void onLongClickItem(int pos) {
+                Toast.makeText(context, "ID:" + trail.getId(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 
     @Override
