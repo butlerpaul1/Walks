@@ -15,12 +15,12 @@
             android:title="@string/View_All_Walks" />
 
         <item
-            android:id="@+id/nav_add"
+            android:id="@+id/test_call"
             android:icon="@android:drawable/ic_input_add"
-            android:title="Test Call" />
+            android:title="Walk Details" />
 
         <item
-            android:id="@+id/nav_firestore"
+            android:id="@+id/select_county"
             android:icon="@android:drawable/btn_star_big_on"
             android:title="@string/Select_walk_by"></item>
     </group>
@@ -33,7 +33,7 @@
                 android:title="Settings" />
 
             <item
-                android:id="@+id/nav_about"
+                android:id="@+id/sign_out"
                 android:icon="@android:drawable/ic_lock_power_off"
                 android:title="Sign Out" />
         </menu>

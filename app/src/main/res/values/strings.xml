@@ -62,6 +62,7 @@
     <string name="nav_add">Add</string>
     <string name="View_All_Walks">View All Walks</string>
     <string name="Select_walk_by">Select Walk By County</string>
+    <string name="one">One</string>
 
 
     <string-array name="counties">

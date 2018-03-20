@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -110,24 +111,30 @@ public class MainActivity extends AppCompatActivity
             // Handle the home action
             startActivity(new Intent(MainActivity.this, MainActivity.class));
 
-        } else if (id == R.id.nav_add) {
-            startActivity(new Intent(MainActivity.this, GetByCounty.class));
-
-        } else if (id == R.id.nav_view) {
+        }
+        else if (id == R.id.nav_view) {
             startActivity(new Intent(MainActivity.this, GetAllTrails.class));
 
-        } else if (id == R.id.nav_settings) {
-            startActivity(new Intent(MainActivity.this, Settings.class));
-
-
-        } else if (id == R.id.nav_about) {
-            signOut();
         }
-        else if (id == R.id.nav_firestore)
-        {
+        else if (id == R.id.test_call) {
+            startActivity(new Intent(MainActivity.this, MapActivity.class));
+
+        }
+        else if (id == R.id.select_county) {
             startActivity(new Intent(MainActivity.this, Counties.class));
 
         }
+
+        else if (id == R.id.nav_settings) {
+            startActivity(new Intent(MainActivity.this, Settings.class));
+
+
+        }
+        else if (id == R.id.sign_out) {
+            signOut();
+        }
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

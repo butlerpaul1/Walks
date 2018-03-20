@@ -1,6 +1,7 @@
 package com.example.paul.myapplication.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,10 @@ import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
 import com.example.paul.myapplication.api.model.Trail;
+import com.example.paul.myapplication.ui.Counties;
+import com.example.paul.myapplication.ui.GetByCounty;
+import com.example.paul.myapplication.ui.GetByTrailName;
+import com.example.paul.myapplication.ui.walkDetails;
 
 import java.util.List;
 
@@ -85,6 +90,7 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
         void onClickItem(int pos);
 
         void onLongClickItem(int pos);
+
     }
 
     public TrailAdapter(List<Trail> trails, int rowLayout, Context context) {
@@ -102,7 +108,7 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
 
 
     @Override
-    public void onBindViewHolder(TrailViewHolder holder, final int position) {
+    public void onBindViewHolder(final TrailViewHolder holder, final int position) {
 
         final Trail trail = trails.get(position);
 
@@ -116,12 +122,22 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
         //get item id on click, and pass to new activity
         holder.setClickListener(new ItemClickListener() {
             @Override public void onClickItem(int pos) {
-                Toast.makeText(context, "ID: " + trail.getId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Trail Name: " + trail.getTrailName(), Toast.LENGTH_SHORT).show();
+                String TrailName = trail.getTrailName();
+                Intent intent = new Intent(context, walkDetails.class);
+                intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("TrailName", TrailName);
+                context.startActivity(intent);
             }
 
             @Override public void onLongClickItem(int pos) {
-                Toast.makeText(context, "ID:" + trail.getId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Trail Name:" + trail.getTrailName(), Toast.LENGTH_SHORT).show();
 
+                String TrailName = trail.getTrailName();
+                Intent intent = new Intent(context, walkDetails.class);
+                intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("TrailName", TrailName);
+                context.startActivity(intent);
             }
         });
 

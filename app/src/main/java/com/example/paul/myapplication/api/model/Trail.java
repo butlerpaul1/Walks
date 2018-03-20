@@ -23,6 +23,50 @@ public class Trail {
     @SerializedName("Trail ID")
     private String id;
 
+    @SerializedName("Quality")
+    private String quality;
+
+    @SerializedName("Estimated time to complete (mins)")
+    private String time;
+
+    @SerializedName("Climb (m)")
+    private String climb;
+
+    @SerializedName("Grade")
+    private String grade;
+
+    @SerializedName("Nearest Town to Start")
+    private String startTown;
+
+    @SerializedName("Nearest Town to Finish")
+    private String finishTown;
+
+
+    public String getQuality() {
+        return quality;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getClimb() {
+        return climb;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public String getStartTown() {
+        return startTown;
+    }
+
+    public String getFinishTown() {
+        return finishTown;
+    }
+
+
     public String getDistance() {
         return distance;
     }
