@@ -41,6 +41,16 @@ public class Trail {
     @SerializedName("Nearest Town to Finish")
     private String finishTown;
 
+    @SerializedName("Start Latitute")
+    private String latitute;
+
+    @SerializedName("Start Longitude")
+    private String longitude;
+
+
+    public String getLatitute() { return latitute;}
+
+    public String getLongitude(){return longitude;}
 
     public String getQuality() {
         return quality;

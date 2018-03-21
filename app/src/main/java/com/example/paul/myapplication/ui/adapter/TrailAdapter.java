@@ -34,7 +34,8 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
 
 
 
-    public static class TrailViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener, View.OnLongClickListener{
+    public static class TrailViewHolder extends RecyclerView.ViewHolder
+            implements  View.OnClickListener, View.OnLongClickListener{
         LinearLayout trailsLayout;
         TextView trailTitle;
         TextView county;
@@ -117,6 +118,9 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
         holder.format.setText(trails.get(position).getFormat());
         holder.distance.setText(trails.get(position).getDistance());
 
+        final String latitude = trail.getLatitute();
+        final String longitude = trail.getLongitude();
+
 
 
         //get item id on click, and pass to new activity
@@ -127,6 +131,8 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
                 Intent intent = new Intent(context, walkDetails.class);
                 intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("TrailName", TrailName);
+                intent.putExtra("Latitude", latitude);
+                intent.putExtra("Longitude", longitude);
                 context.startActivity(intent);
             }
 
@@ -137,6 +143,8 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
                 Intent intent = new Intent(context, walkDetails.class);
                 intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("TrailName", TrailName);
+                intent.putExtra("Latitude", latitude);
+                intent.putExtra("Longitude", longitude);
                 context.startActivity(intent);
             }
         });
