@@ -76,6 +76,8 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".ui.MapActivity"></activity>
+        <activity android:name=".ui.GetLikeTrailName"></activity>
+        <activity android:name=".ui.WeatherActivity"></activity>
 
 
     </application>

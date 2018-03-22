@@ -9,8 +9,6 @@ import com.google.gson.annotations.SerializedName;
 public class Trail {
 
 
-
-
     @SerializedName("Trail Name")
     private String trailName;
     @SerializedName("County")
@@ -48,9 +46,13 @@ public class Trail {
     private String longitude;
 
 
-    public String getLatitute() { return latitute;}
+    public String getLatitute() {
+        return latitute;
+    }
 
-    public String getLongitude(){return longitude;}
+    public String getLongitude() {
+        return longitude;
+    }
 
     public String getQuality() {
         return quality;
@@ -84,18 +86,18 @@ public class Trail {
     public String getTrailName() {
         return trailName;
     }
+
     public String getCounty() {
         return county;
     }
+
     public String getFormat() {
         return format;
     }
-    public String getId(){return id;}
 
-
-
-
-
+    public String getId() {
+        return id;
+    }
 
 
 }

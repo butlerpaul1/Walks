@@ -17,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimaryDark"
+            android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/app_name"/>
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:text="@string/btn_change"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -90,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:text="@string/btn_change"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:text="@string/btn_send"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -118,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:text="@string/btn_remove"
             android:textColor="@android:color/white"
             android:textStyle="bold" />

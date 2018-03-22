@@ -120,6 +120,7 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
 
         final String latitude = trail.getLatitute();
         final String longitude = trail.getLongitude();
+        final String county = trail.getCounty();
 
 
 
@@ -133,6 +134,7 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
                 intent.putExtra("TrailName", TrailName);
                 intent.putExtra("Latitude", latitude);
                 intent.putExtra("Longitude", longitude);
+                intent.putExtra("County", county);
                 context.startActivity(intent);
             }
 
@@ -145,6 +147,7 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
                 intent.putExtra("TrailName", TrailName);
                 intent.putExtra("Latitude", latitude);
                 intent.putExtra("Longitude", longitude);
+                intent.putExtra("County", county);
                 context.startActivity(intent);
             }
         });

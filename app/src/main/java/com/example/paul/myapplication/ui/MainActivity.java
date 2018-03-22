@@ -9,9 +9,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.paul.myapplication.R;
 import com.example.paul.myapplication.ui.Firebase.LoginActivity;
@@ -26,6 +33,8 @@ public class MainActivity extends AppCompatActivity
     private ProgressBar progressBar;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
+    private EditText mSearchText;
+    private Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +45,40 @@ public class MainActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Widgets
+        mSearchText = (EditText) findViewById(R.id.input_search);
+        mButton = (Button) findViewById(R.id.butonCounties);
+
+        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionID, KeyEvent keyEvent) {
+                if (actionID == EditorInfo.IME_ACTION_SEARCH
+                        || actionID == EditorInfo.IME_ACTION_DONE
+                        || keyEvent.getAction() == KeyEvent.ACTION_DOWN
+                        || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER){
+
+                    //excute search method
+
+                    String searchString = mSearchText.getText().toString();
+
+                    Intent myIntent = new Intent(MainActivity.this, GetLikeTrailName.class);
+                    myIntent.putExtra("TrailName", searchString);
+                    startActivity(myIntent);
+
+                }
+                return false;
+            }
+        });
+
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(MainActivity.this, Counties.class);
+                startActivity(myIntent);
+            }
+        });
+
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
