@@ -1,0 +1,101 @@
+package com.example.paul.myapplication.ui;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.paul.myapplication.R;
+import com.example.paul.myapplication.api.data.Channel;
+import com.example.paul.myapplication.api.data.Item;
+import com.example.paul.myapplication.api.service.WeatherServiceCallback;
+import com.example.paul.myapplication.api.service.YahooWeatherService;
+
+/**
+ * Created by butle on 3/22/2018.
+ */
+
+public class WeatherActivity extends Activity implements WeatherServiceCallback {
+
+        private ImageView weatherIconImageView;
+        private TextView temperatureTextView;
+        private TextView conditionTextView;
+        private TextView locationTextView;
+
+        private YahooWeatherService service;
+        private ProgressDialog dialog;
+
+    private static final String TAG = "WeatherActivity";
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_weather);
+
+
+        // get Trail Name from previous activity
+        final String County;
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                County = null;
+            } else {
+                County=extras.getString("County");
+            }
+        } else {
+            County = (String) savedInstanceState.getSerializable("County");
+
+
+        }
+
+        Log.d(TAG,County);
+
+            weatherIconImageView = (ImageView) findViewById(R.id.weatherIconImageView);
+            temperatureTextView = (TextView) findViewById(R.id.temperatureTextView);
+            conditionTextView = (TextView) findViewById(R.id.conditionTextView);
+            locationTextView = (TextView) findViewById(R.id.locationTextView);
+
+            service = new YahooWeatherService(this);
+            dialog = new ProgressDialog(this);
+            dialog.setMessage("Loading...");
+            dialog.show();
+
+            String Counrty = ",Ireland";
+
+            String location = County + Counrty;
+
+
+            service.refreshWeather(location);
+        }
+
+        @Override
+        public void serviceSuccess(Channel channel) {
+            dialog.hide();
+
+            Item item = channel.getItem();
+
+            int resourceId = getResources().getIdentifier("drawable/icon_" + item.getCondition().getCode(), null, getPackageName());
+
+            @SuppressWarnings("deprecation")
+            Drawable weatherIconDrawble = getResources().getDrawable(resourceId);
+
+            weatherIconImageView.setImageDrawable(weatherIconDrawble);
+
+            temperatureTextView.setText(item.getCondition().getTemperature() + "\u00B0" + channel.getUnits().getTemperature());
+            conditionTextView.setText(item.getCondition().getDescription());
+            locationTextView.setText(service.getLocation());
+        }
+
+        @Override
+        public void serviceFailure(Exception exception) {
+            dialog.hide();
+            Toast.makeText(this, exception.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+}
