@@ -2,9 +2,14 @@ package com.example.paul.myapplication.ui;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +19,7 @@ import com.example.paul.myapplication.api.data.Channel;
 import com.example.paul.myapplication.api.data.Item;
 import com.example.paul.myapplication.api.service.WeatherServiceCallback;
 import com.example.paul.myapplication.api.service.YahooWeatherService;
+import com.google.android.gms.maps.model.LatLng;
 
 /**
  * Created by butle on 3/22/2018.
@@ -39,22 +45,43 @@ public class WeatherActivity extends Activity implements WeatherServiceCallback 
 
 
         // get Trail Name from previous activity
+        final String TrailName;
+        final String Latitude;
         final String County;
+        final String Longitude;
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
+                TrailName= null;
+                Latitude = null;
+                Longitude = null;
                 County = null;
             } else {
+                TrailName= extras.getString("TrailName");
+                Latitude=extras.getString("Latitude");
+                Longitude=extras.getString("Longitude");
                 County=extras.getString("County");
             }
         } else {
+            TrailName= (String) savedInstanceState.getSerializable("TrailName");
+            Latitude= (String) savedInstanceState.getSerializable("Latitude");
+            Longitude= (String) savedInstanceState.getSerializable("Longitude");
             County = (String) savedInstanceState.getSerializable("County");
 
 
         }
 
+        Log.d(TAG, TrailName);
+        Log.d(TAG, Longitude);
+        Log.d(TAG, Latitude);
         Log.d(TAG,County);
+
+        //convert from String to LatLng
+        final double lat = Double.parseDouble(Latitude);
+        double longit = Double.parseDouble(Longitude);
+        LatLng location = new LatLng(lat,longit);
+        String locationString = location.toString();
 
             weatherIconImageView = (ImageView) findViewById(R.id.weatherIconImageView);
             temperatureTextView = (TextView) findViewById(R.id.temperatureTextView);
@@ -66,12 +93,57 @@ public class WeatherActivity extends Activity implements WeatherServiceCallback 
             dialog.setMessage("Loading...");
             dialog.show();
 
-            String Counrty = ",Ireland";
+            final String Country = ",Ireland";
 
-            String location = County + Counrty;
+            String weatherLocatoin = County + Country;
 
 
-            service.refreshWeather(location);
+            service.refreshWeather(weatherLocatoin);
+
+
+        /*
+            ----------------------Bottom Nav-------------------
+         */
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav_View);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
+
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+
+                    case R.id.nav_weather:
+                        Intent intentWeather = new Intent(WeatherActivity.this, WeatherActivity.class);
+                        intentWeather.putExtra("County", County);
+                        startActivity(intentWeather);
+                        break;
+
+                    case R.id.nav_details:
+
+                        Log.d(TAG, TrailName);
+
+                        Intent intentDetails = new Intent(WeatherActivity.this, walkDetails.class);
+                        intentDetails.putExtra("TrailName", TrailName);
+                        intentDetails.putExtra("Latitude", Latitude);
+                        intentDetails.putExtra("Longitude", Longitude);
+                        intentDetails.putExtra("County", County);
+                        startActivity(intentDetails);
+                        break;
+
+                    case R.id.nav_images:
+                        startActivity(new Intent(WeatherActivity.this, MainActivity.class));
+                        break;
+
+
+                }
+
+                return false;
+            }
+        });
         }
 
         @Override

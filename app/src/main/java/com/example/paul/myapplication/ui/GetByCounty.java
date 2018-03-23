@@ -1,16 +1,20 @@
 package com.example.paul.myapplication.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
 import com.example.paul.myapplication.api.model.Trail;
 import com.example.paul.myapplication.api.service.MlabApiClient;
 import com.example.paul.myapplication.api.service.ApiInterface;
+import com.example.paul.myapplication.ui.Firebase.Settings;
 import com.example.paul.myapplication.ui.adapter.TrailAdapter;
 
 import java.util.List;
@@ -28,11 +32,27 @@ public class GetByCounty extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
 
-    // TODO - insert your themoviedb.org API KEY here
     private final static String Api = "Sp-vJvuovvpQqzMiyuLGf7n-WG7e7RbF";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_recycler);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.app_name));
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(GetByCounty.this, Counties.class));
+            }
+        });
+
+
 
         // get county from previous activity
         String County;
@@ -53,8 +73,6 @@ public class GetByCounty extends AppCompatActivity {
         String countyString = String.format("{'County': {$regex : '%s'}}" , County);
 
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler);
 
         if (Api.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please obtain your API KEY", Toast.LENGTH_LONG).show();

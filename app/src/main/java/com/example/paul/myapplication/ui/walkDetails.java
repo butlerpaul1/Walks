@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,8 +55,8 @@ public class walkDetails extends AppCompatActivity{
 
 
         // get Trail Name from previous activity
-        String TrailName;
-        String Latitude;
+        final String TrailName;
+        final String Latitude;
         final String County;
         final String Longitude;
 
@@ -93,13 +94,29 @@ public class walkDetails extends AppCompatActivity{
         String locationString = location.toString();
 
         if (isServiceOK()){
-            init(Latitude,Longitude,TrailName);
+            init(Latitude,Longitude,TrailName, County);
         }
 
 
 
         String countyString = String.format("{'Trail Name':'%s'}" , TrailName);
 
+        /*
+        ----------------------Toolbar
+         */
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.app_name));
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(walkDetails.this, GetByCounty.class);
+                myIntent.putExtra("County", County);
+                startActivity(myIntent);            }
+        });
 
 
         /*
@@ -156,7 +173,9 @@ public class walkDetails extends AppCompatActivity{
                     case R.id.nav_weather:
                         Intent myIntent = new Intent(walkDetails.this, WeatherActivity.class);
                         myIntent.putExtra("County", County);
-                        startActivity(myIntent);
+                        myIntent.putExtra("TrailName", TrailName);
+                        myIntent.putExtra("Latitude", Latitude);
+                        myIntent.putExtra("Longitude", Longitude);                        startActivity(myIntent);
                         break;
 
                     case R.id.nav_details:
@@ -176,7 +195,7 @@ public class walkDetails extends AppCompatActivity{
 
 
     }
-    private void init(final String Lat, final String Long, final String Trailname)
+    private void init(final String Lat, final String Long, final String Trailname, final String County)
     {
 
 
@@ -188,6 +207,7 @@ public class walkDetails extends AppCompatActivity{
                 intent.putExtra("Latitude", Lat);
                 intent.putExtra("Longitude", Long);
                 intent.putExtra("TrailName", Trailname);
+                intent.putExtra("County", County);
 
                 startActivity(intent);
             }

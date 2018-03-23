@@ -43,7 +43,15 @@ public class Settings extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Settings.this, MainActivity.class));
+            }
+        });
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -107,33 +115,6 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        //bottom navigation
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav_View);
-        Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(0);
-        menuItem.setChecked(true);
-
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.getItemId()){
-                    case R.id.nav_Home:
-                        startActivity(new Intent(Settings.this, MainActivity.class));
-                        break;
-
-                    case R.id.nav_View:
-                        startActivity(new Intent(Settings.this, GetAllTrails.class));
-                        break;
-
-                    case R.id.nav_Add:
-                        startActivity(new Intent(Settings.this, MainActivity.class));
-                        break;
-                }
-
-                return false;
-            }
-        });
 
 
         changeEmail.setOnClickListener(new View.OnClickListener() {

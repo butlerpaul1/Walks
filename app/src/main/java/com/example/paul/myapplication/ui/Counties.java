@@ -37,6 +37,18 @@ public class Counties extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_counties);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.app_name));
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Counties.this, MainActivity.class));
+            }
+        });
+
 
 
         final String[] counties = getResources().getStringArray(R.array.counties);

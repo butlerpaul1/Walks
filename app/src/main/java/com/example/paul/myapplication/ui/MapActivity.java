@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.Manifest;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -141,29 +142,34 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_map);
         Log.d(TAG, "map is ready");
 
 
         // get county from previous activity
-        String Lat;
-        String Long;
-        String TrailName;
+        final String Lat;
+        final String Long;
+        final String TrailName;
+        final String County;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 Long= null;
                 Lat= null;
                 TrailName=null;
+                County = null;
             } else {
                 Lat= extras.getString("Latitude");
                 Long= extras.getString("Longitude");
                 TrailName=extras.getString("TrailName");
+                County=extras.getString("County");
 
             }
         } else {
             Lat= (String) savedInstanceState.getSerializable("Latitude");
             Long= (String) savedInstanceState.getSerializable("Longitude");
             TrailName=(String) savedInstanceState.getSerializable("TrailName");
+            County = (String) savedInstanceState.getSerializable("County");
 
         }
 
@@ -183,7 +189,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Log.d("Tag", String.valueOf(location));
 
 
-        setContentView(R.layout.activity_map);
         mSearchText = (AutoCompleteTextView) findViewById(R.id.input_search);
         mGps = (ImageView) findViewById(R.id.ic_gps);
         mInfo = (ImageView) findViewById(R.id.places_info);
@@ -191,6 +196,29 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         terainNormal = (ImageView) findViewById(R.id.ic_terrainNormal);
         terainSatellite = (ImageView) findViewById(R.id.ic_terrainSatellite);
         terainHybrid = (ImageView) findViewById(R.id.ic_terrainHybrid);
+
+
+        /*
+        -------------------------Toolbar---------------------
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentDetails = new Intent(MapActivity.this, walkDetails.class);
+                intentDetails.putExtra("TrailName", TrailName);
+                intentDetails.putExtra("Latitude", Lat);
+                intentDetails.putExtra("Longitude", Long);
+                intentDetails.putExtra("County", County);
+                startActivity(intentDetails);
+            }
+        });
+
+        */
 
 
 

@@ -162,14 +162,5 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottomNav_View"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_gravity="bottom"
-        app:menu="@menu/nav_items"></android.support.design.widget.BottomNavigationView>
 
 </android.support.design.widget.CoordinatorLayout>
