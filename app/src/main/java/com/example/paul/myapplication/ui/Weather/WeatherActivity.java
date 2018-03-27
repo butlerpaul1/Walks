@@ -1,4 +1,4 @@
-package com.example.paul.myapplication.ui;
+package com.example.paul.myapplication.ui.Weather;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -19,6 +19,8 @@ import com.example.paul.myapplication.api.data.Channel;
 import com.example.paul.myapplication.api.data.Item;
 import com.example.paul.myapplication.api.service.WeatherServiceCallback;
 import com.example.paul.myapplication.api.service.YahooWeatherService;
+import com.example.paul.myapplication.ui.MainActivity;
+import com.example.paul.myapplication.ui.WalkRequests.walkDetails;
 import com.google.android.gms.maps.model.LatLng;
 
 /**

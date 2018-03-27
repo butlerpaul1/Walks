@@ -1,4 +1,4 @@
-package com.example.paul.myapplication.ui;
+package com.example.paul.myapplication.ui.WalkRequests;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import com.example.paul.myapplication.R;
 import com.example.paul.myapplication.api.model.Trail;
 import com.example.paul.myapplication.api.service.MlabApiClient;
 import com.example.paul.myapplication.api.service.ApiInterface;
+import com.example.paul.myapplication.ui.MainActivity;
 import com.example.paul.myapplication.ui.adapter.TrailAdapter;
 
 import java.util.List;

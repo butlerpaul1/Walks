@@ -3,20 +3,15 @@ package com.example.paul.myapplication.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
 import com.example.paul.myapplication.api.model.Trail;
-import com.example.paul.myapplication.ui.Counties;
-import com.example.paul.myapplication.ui.GetByCounty;
-import com.example.paul.myapplication.ui.GetByTrailName;
-import com.example.paul.myapplication.ui.walkDetails;
+import com.example.paul.myapplication.ui.WalkRequests.walkDetails;
 
 import java.util.List;
 
@@ -113,10 +108,10 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
 
         final Trail trail = trails.get(position);
 
-        holder.trailTitle.setText(trails.get(position).getTrailName());
-        holder.county.setText(trails.get(position).getCounty());
-        holder.format.setText(trails.get(position).getFormat());
-        holder.distance.setText(trails.get(position).getDistance());
+        holder.trailTitle.setText("Trail Name: " + trails.get(position).getTrailName());
+        holder.county.setText("County: " + trails.get(position).getCounty());
+        holder.format.setText("Format: " + trails.get(position).getFormat());
+        holder.distance.setText("Distance(km): " + trails.get(position).getDistance());
 
         final String latitude = trail.getLatitute();
         final String longitude = trail.getLongitude();

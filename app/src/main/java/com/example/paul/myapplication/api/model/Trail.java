@@ -45,6 +45,9 @@ public class Trail {
     @SerializedName("Start Longitude")
     private String longitude;
 
+    @SerializedName("Dogs Allowed:")
+    private String dogsAllowed;
+
 
     public String getLatitute() {
         return latitute;
@@ -99,5 +102,16 @@ public class Trail {
         return id;
     }
 
+    public String getDogsAllowed() {
+
+        if (dogsAllowed == "1")
+        {
+            dogsAllowed = "Yes";
+        }else
+        {
+            dogsAllowed = "No";
+        }
+        return dogsAllowed;
+    }
 
 }

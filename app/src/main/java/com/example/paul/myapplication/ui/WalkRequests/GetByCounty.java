@@ -1,4 +1,4 @@
-package com.example.paul.myapplication.ui;
+package com.example.paul.myapplication.ui.WalkRequests;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import com.example.paul.myapplication.R;
 import com.example.paul.myapplication.api.model.Trail;
 import com.example.paul.myapplication.api.service.MlabApiClient;
 import com.example.paul.myapplication.api.service.ApiInterface;
-import com.example.paul.myapplication.ui.Firebase.Settings;
+import com.example.paul.myapplication.ui.MainActivity;
 import com.example.paul.myapplication.ui.adapter.TrailAdapter;
 
 import java.util.List;
@@ -27,38 +27,18 @@ import retrofit2.Response;
  * Created by butle on 28-Feb-18.
  */
 
-public class GetByTrailName extends AppCompatActivity {
+public class GetByCounty extends AppCompatActivity {
 
-    private static final String TAG = GetByTrailName.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName();
 
 
     private final static String Api = "Sp-vJvuovvpQqzMiyuLGf7n-WG7e7RbF";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
-
-
-
-        // get Trail Name from previous activity
-        String TrailName;
-        final String County;
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if(extras == null) {
-                TrailName= null;
-                County = null;
-            } else {
-                TrailName= extras.getString("TrailName");
-                County=extras.getString("County");
-            }
-        } else {
-            TrailName= (String) savedInstanceState.getSerializable("TrailName");
-            County=(String) savedInstanceState.getSerializable("County");
-        }
-
-        Log.d("Tag", TrailName);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
@@ -68,14 +48,30 @@ public class GetByTrailName extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(GetByTrailName.this, GetByCounty.class);
-                myIntent.putExtra("County", County);
-                startActivity(myIntent);            }
+                startActivity(new Intent(GetByCounty.this, Counties.class));
+            }
         });
 
 
-        //String countyString = String.format("{'County': '%s'}" , County);
-        String countyString = String.format("{'Trail Name':'%s'}" , TrailName);
+
+        // get county from previous activity
+        String County;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                County= null;
+            } else {
+                County= extras.getString("County");
+            }
+        } else {
+            County= (String) savedInstanceState.getSerializable("County");
+        }
+
+        Log.d("Tag", County);
+
+
+        String countyString = String.format("{'County': {$regex : '%s'}}" , County);
+
 
 
         if (Api.isEmpty()) {

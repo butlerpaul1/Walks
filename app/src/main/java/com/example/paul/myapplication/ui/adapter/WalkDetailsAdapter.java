@@ -2,6 +2,7 @@ package com.example.paul.myapplication.ui.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,39 +50,48 @@ public class WalkDetailsAdapter extends ArrayAdapter<Trail> {
         TextView textViewFormat = (TextView) row.findViewById(R.id.format);
         TextView textViewTime = (TextView) row.findViewById(R.id.time);
         TextView textViewLength = (TextView) row.findViewById(R.id.length);
-        //TextView textViewGrade = (TextView) row.findViewById(R.id.grade);
+        TextView textViewClimb = (TextView) row.findViewById(R.id.climb);
         TextView textViewDifficultly = (TextView) row.findViewById(R.id.diffuctlty);
         TextView textViewQuality= (TextView) row.findViewById(R.id.quality);
         TextView textViewStart = (TextView) row.findViewById(R.id.start);
         TextView textViewFinish = (TextView) row.findViewById(R.id.finish);
+        TextView textViewDogs = (TextView) row.findViewById(R.id.dogs);
 
         Trail item = values.get(position);
+
         String trail = item.getTrailName();
-        textViewName.setText(trail);
+        textViewName.setText("Trail Name: " +trail);
 
         String county = item.getCounty();
-        textViewCounty.setText(county);
+        textViewCounty.setText("County: " +county);
 
         String format = item.getFormat();
-        textViewFormat.setText(format);
+        textViewFormat.setText("Format: " + format);
+
+        String climb = item.getClimb();
+        textViewClimb.setText("Elevation(m) :" + climb);
 
         String time = item.getTime();
-        textViewTime.setText(time);
+        textViewTime.setText("Estimated Time to Complete(mins): " +time);
 
         String length = item.getDistance();
-        textViewLength.setText(length);
+        textViewLength.setText("Length(km): " +length);
 
         String diff = item.getGrade();
-        textViewDifficultly.setText(diff);
+        textViewDifficultly.setText("Difficulty: " +diff);
 
         String quality = item.getQuality();
-        textViewQuality.setText(quality);
+        textViewQuality.setText("Rating: " +quality);
+
+        String dogs = item.getDogsAllowed();
+        textViewDogs.setText("Dogs Allowed: " + dogs);
 
         String start = item.getStartTown();
-        textViewStart.setText(start);
+        textViewStart.setText("Start Town: " +start);
 
         String finish = item.getFinishTown();
-        textViewFinish.setText(finish);
+        textViewFinish.setText("Finish Town: " +finish);
+
 
         return row;
 

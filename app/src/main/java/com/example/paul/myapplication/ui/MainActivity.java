@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -23,6 +22,10 @@ import android.widget.TextView;
 import com.example.paul.myapplication.R;
 import com.example.paul.myapplication.ui.Firebase.LoginActivity;
 import com.example.paul.myapplication.ui.Firebase.Settings;
+import com.example.paul.myapplication.ui.GoogleMaps.MapActivity;
+import com.example.paul.myapplication.ui.WalkRequests.Counties;
+import com.example.paul.myapplication.ui.WalkRequests.GetAllTrails;
+import com.example.paul.myapplication.ui.WalkRequests.GetLikeTrailName;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

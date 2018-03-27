@@ -1,7 +1,6 @@
-package com.example.paul.myapplication.ui;
+package com.example.paul.myapplication.ui.WalkRequests;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,10 +20,15 @@ import com.example.paul.myapplication.api.model.Trail;
 import com.example.paul.myapplication.api.service.ApiInterface;
 
 import com.example.paul.myapplication.api.service.MlabApiClient;
+import com.example.paul.myapplication.ui.GoogleMaps.MapActivity;
+import com.example.paul.myapplication.ui.MainActivity;
+import com.example.paul.myapplication.ui.Weather.WeatherActivity;
 import com.example.paul.myapplication.ui.adapter.WalkDetailsAdapter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -102,7 +106,7 @@ public class walkDetails extends AppCompatActivity{
         String countyString = String.format("{'Trail Name':'%s'}" , TrailName);
 
         /*
-        ----------------------Toolbar
+        ----------------------Toolbar-------------------
          */
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -151,6 +155,16 @@ public class walkDetails extends AppCompatActivity{
 
             }
         });
+
+        /*
+        -------------------------Firebase User-----------------
+         */
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        String email = user.getEmail();
+
+        Log.d(TAG, "Email:" + email);
 
 
 
