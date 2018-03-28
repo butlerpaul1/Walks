@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity
 
                     Intent myIntent = new Intent(MainActivity.this, GetLikeTrailName.class);
                     myIntent.putExtra("TrailName", searchString);
+                    mSearchText.setText("");
+                    mSearchText.clearFocus();
                     startActivity(myIntent);
 
                 }
