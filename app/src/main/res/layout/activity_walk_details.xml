@@ -50,6 +50,7 @@
             android:id="@+id/list_item_details"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
             android:layout_below="@+id/mapView"
             android:layout_above="@id/bottomNav_View"
             android:paddingRight="10dp"

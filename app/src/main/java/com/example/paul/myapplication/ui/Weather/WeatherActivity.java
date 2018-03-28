@@ -19,6 +19,7 @@ import com.example.paul.myapplication.api.data.Channel;
 import com.example.paul.myapplication.api.data.Item;
 import com.example.paul.myapplication.api.service.WeatherServiceCallback;
 import com.example.paul.myapplication.api.service.YahooWeatherService;
+import com.example.paul.myapplication.ui.CustomSearch.SearchActivity;
 import com.example.paul.myapplication.ui.MainActivity;
 import com.example.paul.myapplication.ui.WalkRequests.walkDetails;
 import com.google.android.gms.maps.model.LatLng;
@@ -121,13 +122,13 @@ public class WeatherActivity extends Activity implements WeatherServiceCallback 
                     case R.id.nav_weather:
                         Intent intentWeather = new Intent(WeatherActivity.this, WeatherActivity.class);
                         intentWeather.putExtra("County", County);
+                        intentWeather.putExtra("Latitude", Latitude);
+                        intentWeather.putExtra("Longitude", Longitude);
+                        intentWeather.putExtra("County", County);
                         startActivity(intentWeather);
                         break;
 
                     case R.id.nav_details:
-
-                        Log.d(TAG, TrailName);
-
                         Intent intentDetails = new Intent(WeatherActivity.this, walkDetails.class);
                         intentDetails.putExtra("TrailName", TrailName);
                         intentDetails.putExtra("Latitude", Latitude);
@@ -137,7 +138,12 @@ public class WeatherActivity extends Activity implements WeatherServiceCallback 
                         break;
 
                     case R.id.nav_images:
-                        startActivity(new Intent(WeatherActivity.this, MainActivity.class));
+                        Intent walkImage = new Intent(WeatherActivity.this, SearchActivity.class);
+                        walkImage.putExtra("TrailName", TrailName);
+                        walkImage.putExtra("Latitude", Latitude);
+                        walkImage.putExtra("Longitude", Longitude);
+                        walkImage.putExtra("County", County);
+                        startActivity(walkImage);
                         break;
 
 

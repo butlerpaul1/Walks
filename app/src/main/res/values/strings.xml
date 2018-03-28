@@ -93,11 +93,11 @@
         <item>Galway</item>
         <item>Kerry</item>
         <item>Kildare</item>
-        <item>Killkenny</item>
+        <item>Kilkenny</item>
         <item>Laois</item>
         <item>Leitrim</item>
         <item>Limerick</item>
-        <item>Lomgford</item>
+        <item>Longford</item>
         <item>Louth</item>
         <item>Mayo</item>
         <item>Meath</item>
@@ -107,8 +107,9 @@
         <item>Sligo</item>
         <item>Tipperary</item>
         <item>Waterford</item>
-        <item>Westmeanth</item>
+        <item>Westmeath</item>
         <item>Wexford</item>
         <item>Wicklow</item>
+        <item>Tyrone</item>
     </string-array>
 </resources>

@@ -74,7 +74,8 @@
         <activity android:name=".ui.GoogleMaps.MapActivity"></activity>
         <activity android:name=".ui.WalkRequests.GetLikeTrailName"></activity>
         <activity android:name=".ui.Weather.WeatherActivity"></activity>
-
+        <activity android:name=".ui.CustomSearch.ImageDisplay"></activity>
+        <activity android:name=".ui.CustomSearch.SearchActivity"></activity>
 
     </application>
 

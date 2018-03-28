@@ -20,6 +20,7 @@ import com.example.paul.myapplication.api.model.Trail;
 import com.example.paul.myapplication.api.service.ApiInterface;
 
 import com.example.paul.myapplication.api.service.MlabApiClient;
+import com.example.paul.myapplication.ui.CustomSearch.SearchActivity;
 import com.example.paul.myapplication.ui.GoogleMaps.MapActivity;
 import com.example.paul.myapplication.ui.MainActivity;
 import com.example.paul.myapplication.ui.Weather.WeatherActivity;
@@ -53,7 +54,7 @@ public class walkDetails extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.walk_details);
+        setContentView(R.layout.activity_walk_details);
 
 
 
@@ -175,7 +176,7 @@ public class walkDetails extends AppCompatActivity{
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav_View);
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(0);
+        MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
 
 
@@ -185,19 +186,30 @@ public class walkDetails extends AppCompatActivity{
                 switch(item.getItemId()){
 
                     case R.id.nav_weather:
-                        Intent myIntent = new Intent(walkDetails.this, WeatherActivity.class);
-                        myIntent.putExtra("County", County);
-                        myIntent.putExtra("TrailName", TrailName);
-                        myIntent.putExtra("Latitude", Latitude);
-                        myIntent.putExtra("Longitude", Longitude);                        startActivity(myIntent);
+                        Intent intentWeather = new Intent(walkDetails.this, WeatherActivity.class);
+                        intentWeather.putExtra("County", County);
+                        intentWeather.putExtra("TrailName", TrailName);
+                        intentWeather.putExtra("Latitude", Latitude);
+                        intentWeather.putExtra("Longitude", Longitude);
+                        startActivity(intentWeather);
                         break;
 
                     case R.id.nav_details:
-                        startActivity(new Intent(walkDetails.this, MainActivity.class));
+                        Intent intentDetails = new Intent(walkDetails.this, walkDetails.class);
+                        intentDetails.putExtra("TrailName", TrailName);
+                        intentDetails.putExtra("Latitude", Latitude);
+                        intentDetails.putExtra("Longitude", Longitude);
+                        intentDetails.putExtra("County", County);
+                        startActivity(intentDetails);
                         break;
 
                     case R.id.nav_images:
-                        startActivity(new Intent(walkDetails.this, MainActivity.class));
+                        Intent walkImage = new Intent(walkDetails.this, SearchActivity.class);
+                        walkImage.putExtra("TrailName", TrailName);
+                        walkImage.putExtra("County", County);
+                        walkImage.putExtra("Latitude", Latitude);
+                        walkImage.putExtra("Longitude", Longitude);
+                        startActivity(walkImage);
                         break;
 
 
