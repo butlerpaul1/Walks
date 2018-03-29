@@ -3,7 +3,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 
 
-import com.example.paul.myapplication.api.data.Channel;
+import com.example.paul.myapplication.api.model.Channel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +39,8 @@ public class YahooWeatherService {
             @Override
             protected String doInBackground(String... strings) {
 
-                String YQL = String.format("select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=\"%s\")", strings[0]);
+                //query gets weather for location (county,country) passed from previous activity and u determines if its F|C
+                String YQL = String.format("select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=\"%s\") and u='c'", strings[0]);
 
                 String endpoint = String.format("https://query.yahooapis.com/v1/public/yql?q=%s&format=json", Uri.encode(YQL));
 

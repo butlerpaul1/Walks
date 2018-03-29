@@ -1,62 +1,49 @@
 package com.example.paul.myapplication.ui.CustomSearch;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
-
 import com.example.paul.myapplication.R;
-import com.example.paul.myapplication.api.model.ImageFilter;
-import com.example.paul.myapplication.api.model.ImageResult;
+import com.example.paul.myapplication.api.model.WalkImageFilter;
+import com.example.paul.myapplication.api.model.WalkImageResult;
+import com.example.paul.myapplication.api.service.WalkImageService;
 import com.example.paul.myapplication.ui.CustomSearch.helper.EndlessScrollListener;
-import com.example.paul.myapplication.ui.MainActivity;
-import com.example.paul.myapplication.ui.WalkRequests.walkDetails;
+import com.example.paul.myapplication.ui.WalkRequests.WalkDetails;
 import com.example.paul.myapplication.ui.Weather.WeatherActivity;
-import com.example.paul.myapplication.ui.adapter.ImageResultArrayAdapter;
+import com.example.paul.myapplication.ui.adapter.WalkImageResultArrayAdapter;
 import com.loopj.android.http.JsonHttpResponseHandler;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by butle on 3/28/2018.
  */
 
-public class SearchActivity extends AppCompatActivity {
+public class WalkImageSearch extends AppCompatActivity {
 
-    private static int MAX_PAGE = 10;
-    //EditText etQuery;
-    GridView gvResults;
-    //Button btnSearch;
-    ArrayList<ImageResult> imageResults;
-    ImageResultArrayAdapter imageAdapter;
-    SearchClient client;
+    private static int MAX_PAGE = 5;
+    GridView gvWalkImage;
+    ArrayList<WalkImageResult> walkWalkImageResults;
+    WalkImageResultArrayAdapter WalkImageAdapter;
+    WalkImageService client;
     int startPage = 1;
-    String query;
-    ImageFilter imageFilter = new ImageFilter();
+    String TrailName;
+    WalkImageFilter walkImageFilter = new WalkImageFilter();
 
 
-    private static final String TAG = "SearchActivity";
+    private static final String TAG = "WalkImageSearch";
 
 
 
@@ -115,7 +102,7 @@ public class SearchActivity extends AppCompatActivity {
                 switch(item.getItemId()){
 
                     case R.id.nav_weather:
-                        Intent intentWeather = new Intent(SearchActivity.this, WeatherActivity.class);
+                        Intent intentWeather = new Intent(WalkImageSearch.this, WeatherActivity.class);
                         intentWeather.putExtra("County", County);
                         intentWeather.putExtra("TrailName", TrailName);
                         intentWeather.putExtra("Latitude", Latitude);
@@ -124,7 +111,7 @@ public class SearchActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_details:
-                        Intent intentDetails = new Intent(SearchActivity.this, walkDetails.class);
+                        Intent intentDetails = new Intent(WalkImageSearch.this, WalkDetails.class);
                         intentDetails.putExtra("TrailName", TrailName);
                         intentDetails.putExtra("Latitude", Latitude);
                         intentDetails.putExtra("Longitude", Longitude);
@@ -133,7 +120,7 @@ public class SearchActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_images:
-                        Intent walkImage = new Intent(SearchActivity.this, SearchActivity.class);
+                        Intent walkImage = new Intent(WalkImageSearch.this, WalkImageSearch.class);
                         walkImage.putExtra("TrailName", TrailName);
                         walkImage.putExtra("Latitude", Latitude);
                         walkImage.putExtra("Longitude", Longitude);
@@ -149,23 +136,23 @@ public class SearchActivity extends AppCompatActivity {
         });
 
 
-        setupViews(TrailName);
+        displayImages(TrailName);
     }
 
-    public void setupViews(final String trailName){
+    public void displayImages(final String trailName){
 
-        gvResults = (GridView) findViewById(R.id.gvResults);
-        gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gvWalkImage = (GridView) findViewById(R.id.gvWalkImage);
+        gvWalkImage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), ImageDisplay.class);
-                ImageResult imageResult = imageResults.get(position);
-                i.putExtra("result", imageResult);
+                Intent i = new Intent(getApplicationContext(), WalkImageDisplay.class);
+                WalkImageResult walkImageResult = walkWalkImageResults.get(position);
+                i.putExtra("result", walkImageResult);
                 startActivity(i);
             }
         });
 
-        gvResults.setOnScrollListener(new EndlessScrollListener() {
+        gvWalkImage.setOnScrollListener(new EndlessScrollListener() {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
                 if (page <= MAX_PAGE) {
@@ -174,9 +161,9 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        imageResults = new ArrayList<>();
-        imageAdapter = new ImageResultArrayAdapter(this, imageResults);
-        gvResults.setAdapter(imageAdapter);
+        walkWalkImageResults = new ArrayList<>();
+        WalkImageAdapter = new WalkImageResultArrayAdapter(this, walkWalkImageResults);
+        gvWalkImage.setAdapter(WalkImageAdapter);
 
         onImageSearch(1,trailName);
 
@@ -185,38 +172,34 @@ public class SearchActivity extends AppCompatActivity {
 
     public void onImageSearch(int start, String trailName) {
 
-            client = new SearchClient();
-            query = trailName;
+            client = new WalkImageService();
+        TrailName = trailName;
             startPage = start;
             if (startPage == 1)
-                imageAdapter.clear();
+                WalkImageAdapter.clear();
 
-            if (!query.equals(""))
-                client.getSearch(query, startPage, imageFilter, this, new JsonHttpResponseHandler() {
-                            @Override
-                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                                try {
-                                    JSONArray imageJsonResults;
-                                    if (response != null) {
-                                        imageJsonResults = response.getJSONArray("items");
-                                        imageAdapter.addAll(ImageResult.fromJSONArray(imageJsonResults));
-                                    }
-                                } catch (JSONException e) {
-                                    Toast.makeText(getApplicationContext(), "Invalid data", Toast.LENGTH_SHORT).show();
-                                    e.printStackTrace();
+            client.getSearch(TrailName, startPage, walkImageFilter, new JsonHttpResponseHandler()
+                    {
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            try {
+                                JSONArray imageJsonResults;
+                                if (response != null) {
+                                    imageJsonResults = response.getJSONArray("items");
+                                    WalkImageAdapter.addAll(WalkImageResult.fromJSONArray(imageJsonResults));
                                 }
-                            }
-
-                            @Override
-                            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                                super.onFailure(statusCode, headers, responseString, throwable);
-                                Toast.makeText(getApplicationContext(), "Service not working", Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                Log.e(TAG, e.getMessage());
                             }
                         }
-                );
-            else {
-                    Log.d(TAG, "Error with walk name");
-            }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                            super.onFailure(statusCode, headers, responseString, throwable);
+                            Toast.makeText(getApplicationContext(), "Service not working", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            );
     }
 
 }

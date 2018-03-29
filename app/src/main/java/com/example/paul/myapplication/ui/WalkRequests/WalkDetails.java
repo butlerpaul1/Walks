@@ -20,9 +20,8 @@ import com.example.paul.myapplication.api.model.Trail;
 import com.example.paul.myapplication.api.service.ApiInterface;
 
 import com.example.paul.myapplication.api.service.MlabApiClient;
-import com.example.paul.myapplication.ui.CustomSearch.SearchActivity;
+import com.example.paul.myapplication.ui.CustomSearch.WalkImageSearch;
 import com.example.paul.myapplication.ui.GoogleMaps.MapActivity;
-import com.example.paul.myapplication.ui.MainActivity;
 import com.example.paul.myapplication.ui.Weather.WeatherActivity;
 import com.example.paul.myapplication.ui.adapter.WalkDetailsAdapter;
 import com.google.android.gms.common.ConnectionResult;
@@ -41,13 +40,12 @@ import retrofit2.Response;
  * Created by butle on 3/15/2018.
  */
 
-public class walkDetails extends AppCompatActivity{
+public class WalkDetails extends AppCompatActivity{
 
     private ListView listView;
     private final static String mlabAPi = "Sp-vJvuovvpQqzMiyuLGf7n-WG7e7RbF";
-    private final static String accuApi = "tCiIuvak1ZxqDc51RFKnsSlVaK7nhfJn";
 
-    private static final String TAG = "walkDetails";
+    private static final String TAG = "WalkDetails";
 
     private static final int ERROR_DIALOG_REQUEST = 9001;
 
@@ -118,7 +116,7 @@ public class walkDetails extends AppCompatActivity{
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(walkDetails.this, GetByCounty.class);
+                Intent myIntent = new Intent(WalkDetails.this, GetByCounty.class);
                 myIntent.putExtra("County", County);
                 startActivity(myIntent);            }
         });
@@ -186,7 +184,7 @@ public class walkDetails extends AppCompatActivity{
                 switch(item.getItemId()){
 
                     case R.id.nav_weather:
-                        Intent intentWeather = new Intent(walkDetails.this, WeatherActivity.class);
+                        Intent intentWeather = new Intent(WalkDetails.this, WeatherActivity.class);
                         intentWeather.putExtra("County", County);
                         intentWeather.putExtra("TrailName", TrailName);
                         intentWeather.putExtra("Latitude", Latitude);
@@ -195,7 +193,7 @@ public class walkDetails extends AppCompatActivity{
                         break;
 
                     case R.id.nav_details:
-                        Intent intentDetails = new Intent(walkDetails.this, walkDetails.class);
+                        Intent intentDetails = new Intent(WalkDetails.this, WalkDetails.class);
                         intentDetails.putExtra("TrailName", TrailName);
                         intentDetails.putExtra("Latitude", Latitude);
                         intentDetails.putExtra("Longitude", Longitude);
@@ -204,7 +202,7 @@ public class walkDetails extends AppCompatActivity{
                         break;
 
                     case R.id.nav_images:
-                        Intent walkImage = new Intent(walkDetails.this, SearchActivity.class);
+                        Intent walkImage = new Intent(WalkDetails.this, WalkImageSearch.class);
                         walkImage.putExtra("TrailName", TrailName);
                         walkImage.putExtra("County", County);
                         walkImage.putExtra("Latitude", Latitude);
@@ -229,7 +227,7 @@ public class walkDetails extends AppCompatActivity{
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(walkDetails.this, MapActivity.class);
+                Intent intent = new Intent(WalkDetails.this, MapActivity.class);
                 intent.putExtra("Latitude", Lat);
                 intent.putExtra("Longitude", Long);
                 intent.putExtra("TrailName", Trailname);
@@ -244,7 +242,7 @@ public class walkDetails extends AppCompatActivity{
     public boolean isServiceOK(){
         Log.d(TAG, "isServiceOK: checking google services version");
 
-        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(walkDetails.this);
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(WalkDetails.this);
 
         if (available == ConnectionResult.SUCCESS)
         {
@@ -254,7 +252,7 @@ public class walkDetails extends AppCompatActivity{
         }
         else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
             //version issue
-            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(walkDetails.this, available, ERROR_DIALOG_REQUEST);
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(WalkDetails.this, available, ERROR_DIALOG_REQUEST);
             dialog.show();
         }
         else {

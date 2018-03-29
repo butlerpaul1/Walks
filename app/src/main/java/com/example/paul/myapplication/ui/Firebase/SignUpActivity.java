@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.telecom.Call;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,11 +14,18 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
+import com.example.paul.myapplication.api.model.User;
+import com.example.paul.myapplication.api.service.ApiInterface;
+import com.example.paul.myapplication.api.service.MlabApiClient;
 import com.example.paul.myapplication.ui.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by butle on 29-Jan-18.
@@ -61,8 +70,11 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = inputEmail.getText().toString().trim();
+                final String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
+
+                final String[] completedWalks;
+                final String[]favWalks ;
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -85,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
                         .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(SignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(SignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
@@ -94,14 +106,54 @@ public class SignUpActivity extends AppCompatActivity {
                                     Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    startActivity(new Intent(SignUpActivity.this, MainActivity.class));
-                                    finish();
+
+                                    //FirebaseUser userEmail = FirebaseAuth.getInstance().getCurrentUser();
+                                    //String email = userEmail.getEmail();
+
+                                    String completedWalks[] = {};
+                                    String favWalks[] = {};
+
+
+                                    User testUser = new User(
+                                            email,
+                                            completedWalks,
+                                            favWalks
+                                    );
+
+                                    createUserMlab(testUser);
                                 }
                             }
                         });
 
+
+
             }
         });
+    }
+
+    private void createUserMlab(User testUser)
+    {
+
+        ApiInterface apiService =
+                MlabApiClient.getClient().create(ApiInterface.class);
+
+        retrofit2.Call<User> call = apiService.createAccount(testUser);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(retrofit2.Call<User> call, Response<User> response) {
+                //user created successfully
+                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<User> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"User not Created",Toast.LENGTH_LONG ).show();
+            }
+        });
+
+
     }
 
     @Override

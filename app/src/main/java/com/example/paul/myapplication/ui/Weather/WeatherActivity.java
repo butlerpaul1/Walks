@@ -15,14 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
-import com.example.paul.myapplication.api.data.Channel;
-import com.example.paul.myapplication.api.data.Item;
+import com.example.paul.myapplication.api.model.Channel;
+import com.example.paul.myapplication.api.model.Item;
 import com.example.paul.myapplication.api.service.WeatherServiceCallback;
 import com.example.paul.myapplication.api.service.YahooWeatherService;
-import com.example.paul.myapplication.ui.CustomSearch.SearchActivity;
-import com.example.paul.myapplication.ui.MainActivity;
-import com.example.paul.myapplication.ui.WalkRequests.walkDetails;
-import com.google.android.gms.maps.model.LatLng;
+import com.example.paul.myapplication.ui.CustomSearch.WalkImageSearch;
+import com.example.paul.myapplication.ui.WalkRequests.WalkDetails;
 
 /**
  * Created by butle on 3/22/2018.
@@ -80,11 +78,6 @@ public class WeatherActivity extends Activity implements WeatherServiceCallback 
         Log.d(TAG, Latitude);
         Log.d(TAG,County);
 
-        //convert from String to LatLng
-        final double lat = Double.parseDouble(Latitude);
-        double longit = Double.parseDouble(Longitude);
-        LatLng location = new LatLng(lat,longit);
-        String locationString = location.toString();
 
             weatherIconImageView = (ImageView) findViewById(R.id.weatherIconImageView);
             temperatureTextView = (TextView) findViewById(R.id.temperatureTextView);
@@ -98,10 +91,11 @@ public class WeatherActivity extends Activity implements WeatherServiceCallback 
 
             final String Country = ",Ireland";
 
-            String weatherLocatoin = County + Country;
+            String weatherLocation = County + Country;
 
 
-            service.refreshWeather(weatherLocatoin);
+            service.refreshWeather(weatherLocation);
+
 
 
         /*
@@ -124,12 +118,12 @@ public class WeatherActivity extends Activity implements WeatherServiceCallback 
                         intentWeather.putExtra("County", County);
                         intentWeather.putExtra("Latitude", Latitude);
                         intentWeather.putExtra("Longitude", Longitude);
-                        intentWeather.putExtra("County", County);
+                        intentWeather.putExtra("TrailName", TrailName);
                         startActivity(intentWeather);
                         break;
 
                     case R.id.nav_details:
-                        Intent intentDetails = new Intent(WeatherActivity.this, walkDetails.class);
+                        Intent intentDetails = new Intent(WeatherActivity.this, WalkDetails.class);
                         intentDetails.putExtra("TrailName", TrailName);
                         intentDetails.putExtra("Latitude", Latitude);
                         intentDetails.putExtra("Longitude", Longitude);
@@ -138,7 +132,7 @@ public class WeatherActivity extends Activity implements WeatherServiceCallback 
                         break;
 
                     case R.id.nav_images:
-                        Intent walkImage = new Intent(WeatherActivity.this, SearchActivity.class);
+                        Intent walkImage = new Intent(WeatherActivity.this, WalkImageSearch.class);
                         walkImage.putExtra("TrailName", TrailName);
                         walkImage.putExtra("Latitude", Latitude);
                         walkImage.putExtra("Longitude", Longitude);

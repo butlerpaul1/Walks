@@ -1,10 +1,13 @@
 package com.example.paul.myapplication.ui.WalkRequests;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
@@ -26,13 +29,30 @@ import retrofit2.Response;
 
 public class GetLikeTrailName extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = "GetLikeTrailName";
 
 
     private final static String Api = "Sp-vJvuovvpQqzMiyuLGf7n-WG7e7RbF";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_recycler);
+
+
+        /*
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.app_name));
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(GetLikeTrailName.this, MainActivity.class));
+            }
+        });
+        */
 
         // get Trail Name from previous activity
         String TrailName;
@@ -50,13 +70,10 @@ public class GetLikeTrailName extends AppCompatActivity {
         Log.d("Tag", TrailName);
 
 
-//      String countyString = String.format("{'Trail Name':'%s'}" , TrailName);
         String walkString = String.format("{'Trail Name': {$regex : '%s'}}" , TrailName);
 
 
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler);
 
         if (Api.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please obtain your API KEY", Toast.LENGTH_LONG).show();
@@ -75,7 +92,12 @@ public class GetLikeTrailName extends AppCompatActivity {
             public void onResponse(Call<List<Trail>> call, Response<List<Trail>> response) {
                 int statusCode = response.code();
                 List<Trail> trails = response.body();
-                recyclerView.setAdapter(new TrailAdapter(trails, R.layout.list_item_trail, getApplicationContext()));
+                if (trails.size() > 1) {
+                    recyclerView.setAdapter(new TrailAdapter(trails, R.layout.list_item_trail, getApplicationContext()));
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"WalkName/Keyword does not match any records", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

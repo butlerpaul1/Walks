@@ -6,21 +6,21 @@ import java.io.Serializable;
  * Created by butle on 3/28/2018.
  */
 
-public class ImageFilter implements Serializable{
+public class WalkImageFilter implements Serializable{
 
     private String size;
     private String color;
     private String type;
     private String site;
 
-    public ImageFilter(){
+    public WalkImageFilter(){
         this.size = "Any";
         this.color = "Any";
         this.type = "Any";
         this.site = "";
     }
 
-    public ImageFilter(String size, String color, String type, String site) {
+    public WalkImageFilter(String size, String color, String type, String site) {
         this.size = size;
         this.color = color;
         this.type = type;

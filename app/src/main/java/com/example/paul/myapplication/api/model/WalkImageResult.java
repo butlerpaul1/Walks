@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by butle on 3/28/2018.
  */
 
-public class ImageResult implements Serializable{
+public class WalkImageResult implements Serializable{
     private String fullUrl;
     private String thumbUrl;
     private String title;
@@ -26,7 +26,7 @@ public class ImageResult implements Serializable{
         return title;
     }
 
-    public ImageResult(JSONObject json){
+    public WalkImageResult(JSONObject json){
         try {
             this.fullUrl = json.getString("link");
             this.title = json.getString("title");
@@ -36,11 +36,11 @@ public class ImageResult implements Serializable{
         }
     }
 
-    public static ArrayList<ImageResult> fromJSONArray (JSONArray array){
-        ArrayList<ImageResult> results = new ArrayList<>();
+    public static ArrayList<WalkImageResult> fromJSONArray (JSONArray array){
+        ArrayList<WalkImageResult> results = new ArrayList<>();
         for (int i=0; i < array.length(); i++){
             try {
-                results.add(new ImageResult(array.getJSONObject(i)));
+                results.add(new WalkImageResult(array.getJSONObject(i)));
             }catch (JSONException e){
                 e.printStackTrace();
             }

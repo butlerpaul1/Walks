@@ -1,4 +1,4 @@
-package com.example.paul.myapplication.api.data;
+package com.example.paul.myapplication.api.model;
 
 import org.json.JSONObject;
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.WalkRequests.walkDetails">
+    tools:context=".ui.WalkRequests.WalkDetails">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="148dp"
         android:contentDescription="@string/condition_icon"
         android:src="@drawable/icon_na" />
 
@@ -81,8 +81,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottomNav_View"
-        android:layout_alignEnd="@+id/weatherIconImageView"
-        android:layout_alignRight="@+id/weatherIconImageView"
+        android:layout_alignEnd="@+id/temperatureTextView"
+        android:layout_alignLeft="@+id/temperatureTextView"
+        android:layout_alignRight="@+id/temperatureTextView"
+        android:layout_alignStart="@+id/temperatureTextView"
         android:contentDescription="@string/powered_by_yahoo"
         android:src="@drawable/yahoo" />
 

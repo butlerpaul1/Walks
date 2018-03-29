@@ -204,7 +204,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentDetails = new Intent(MapActivity.this, walkDetails.class);
+                Intent intentDetails = new Intent(MapActivity.this, WalkDetails.class);
                 intentDetails.putExtra("TrailName", TrailName);
                 intentDetails.putExtra("Latitude", Lat);
                 intentDetails.putExtra("Longitude", Long);

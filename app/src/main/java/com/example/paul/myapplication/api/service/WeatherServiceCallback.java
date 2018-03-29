@@ -1,6 +1,6 @@
 package com.example.paul.myapplication.api.service;
 
-import com.example.paul.myapplication.api.data.Channel;
+import com.example.paul.myapplication.api.model.Channel;
 
 /**
  * Created by butle on 3/22/2018.

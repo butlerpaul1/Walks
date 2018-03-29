@@ -26,11 +26,11 @@ import retrofit2.Response;
 
 public class GetAllTrails extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-
+    private static final String TAG = GetAllTrails.class.getSimpleName();
 
     // TODO - insert your themoviedb.org API KEY here
     private final static String Api = "Sp-vJvuovvpQqzMiyuLGf7n-WG7e7RbF";
+
 
 
 
