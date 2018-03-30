@@ -11,12 +11,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
 import com.example.paul.myapplication.api.model.Trail;
+import com.example.paul.myapplication.api.model.Update;
+import com.example.paul.myapplication.api.model.UpdateRequest;
 import com.example.paul.myapplication.api.service.ApiInterface;
 
 import com.example.paul.myapplication.api.service.MlabApiClient;
@@ -54,8 +57,8 @@ public class WalkDetails extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_walk_details);
 
-
-
+        ImageView btnCompleted = (ImageView) findViewById(R.id.walkComplete);
+        ImageView btnFav = (ImageView) findViewById(R.id.walkFav);
 
         // get Trail Name from previous activity
         final String TrailName;
@@ -101,8 +104,37 @@ public class WalkDetails extends AppCompatActivity{
         }
 
 
+                        /*
+        -------------------------Firebase User-----------------
+         */
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        final String email = user.getEmail();
+
 
         String countyString = String.format("{'Trail Name':'%s'}" , TrailName);
+        String updateFav= String.format("'$addToSet': {'favWalks': '%s'}} ", TrailName);
+
+        String updateComplete = String.format("'$addToSet': {'completedWalks': '%s'}} ", TrailName);
+        final String query =String.format("{'email': '%s'}",email) ;
+
+
+        final Update queryComplete = new Update(
+                updateComplete
+        );
+
+        final Update queryFav = new Update(
+                updateFav
+        );
+
+        final UpdateRequest requestBodyComplete = new UpdateRequest();
+        requestBodyComplete.addToSet.put("completedWalks", TrailName);
+
+
+        final UpdateRequest requestBodyFav = new UpdateRequest();
+        requestBodyFav.addToSet.put("favWalks", TrailName);
+
 
         /*
         ----------------------Toolbar-------------------
@@ -135,7 +167,7 @@ public class WalkDetails extends AppCompatActivity{
         }
 
 
-        ApiInterface apiService =
+        final ApiInterface apiService =
                 MlabApiClient.getClient().create(ApiInterface.class);
 
         Call<List<Trail>> call = apiService.byTrailID(countyString,mlabAPi);
@@ -155,18 +187,53 @@ public class WalkDetails extends AppCompatActivity{
             }
         });
 
-        /*
-        -------------------------Firebase User-----------------
+                /*
+        ---------------------- Update Requests -------------------------
          */
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        String email = user.getEmail();
+        btnCompleted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        Log.d(TAG, "Email:" + email);
+                Call<Update> completeCall = apiService.test(mlabAPi, query, requestBodyComplete);
+                completeCall.enqueue(new Callback<Update>() {
+                    @Override
+                    public void onResponse(Call<Update> call, Response<Update> response) {
+                        Toast.makeText(getApplicationContext(),"Walk marked as Complete", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Update> call, Throwable t) {
+
+                    }
+                });
 
 
+            }
+        });
 
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<Update> completeCall = apiService.test(mlabAPi, query, requestBodyFav);
+                completeCall.enqueue(new Callback<Update>() {
+                    @Override
+                    public void onResponse(Call<Update> call, Response<Update> response) {
+                        Toast.makeText(getApplicationContext(),"Walk marked as Favourite", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Update> call, Throwable t) {
+
+                    }
+                });
+
+
+            }
+        });
 
         /*
             ----------------------Bottom Nav-------------------

@@ -37,6 +37,9 @@ public class SignUpActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private FirebaseAuth auth;
 
+    private final static String mlabAPi = "Sp-vJvuovvpQqzMiyuLGf7n-WG7e7RbF";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,7 +140,7 @@ public class SignUpActivity extends AppCompatActivity {
         ApiInterface apiService =
                 MlabApiClient.getClient().create(ApiInterface.class);
 
-        retrofit2.Call<User> call = apiService.createAccount(testUser);
+        retrofit2.Call<User> call = apiService.createAccount(mlabAPi,testUser);
 
         call.enqueue(new Callback<User>() {
             @Override
