@@ -50,23 +50,8 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
 
             v.setClickable(true);
             v.setFocusableInTouchMode(true);
-
-
-            /*
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(v.getContext(), "Trail ID" + Integer.toString(getAdapterPosition()+1), Toast.LENGTH_LONG).show();
-                }
-            });
-
-            */
-
             v.setOnClickListener(this);
-
             v.setOnLongClickListener(this);
-
-
         }
 
         public void setClickListener(ItemClickListener listener) {
@@ -122,7 +107,6 @@ public class TrailAdapter extends RecyclerView.Adapter<TrailAdapter.TrailViewHol
         //get item id on click, and pass to new activity
         holder.setClickListener(new ItemClickListener() {
             @Override public void onClickItem(int pos) {
-                //Toast.makeText(context, "Trail Name: " + trail.getTrailName(), Toast.LENGTH_SHORT).show();
                 String TrailName = trail.getTrailName();
                 Intent intent = new Intent(context, WalkDetails.class);
                 intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);

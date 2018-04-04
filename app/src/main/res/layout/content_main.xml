@@ -61,6 +61,15 @@
             android:textColor="@color/white"
             android:textSize="15dp" />
 
+        <ImageView
+            android:id="@+id/ireland"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/butonCounties"
+            android:layout_alignStart="@+id/butonCounties"
+            android:layout_below="@+id/butonCounties"
+            app:srcCompat="@drawable/ireland" />
+
         />
 
 

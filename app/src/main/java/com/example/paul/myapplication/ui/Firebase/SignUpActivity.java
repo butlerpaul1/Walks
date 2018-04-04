@@ -109,10 +109,6 @@ public class SignUpActivity extends AppCompatActivity {
                                     Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-
-                                    //FirebaseUser userEmail = FirebaseAuth.getInstance().getCurrentUser();
-                                    //String email = userEmail.getEmail();
-
                                     String completedWalks[] = {};
                                     String favWalks[] = {};
 

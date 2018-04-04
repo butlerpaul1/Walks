@@ -14,6 +14,7 @@ import com.example.paul.myapplication.R;
 import com.example.paul.myapplication.api.model.Trail;
 import com.example.paul.myapplication.api.service.MlabApiClient;
 import com.example.paul.myapplication.api.service.ApiInterface;
+import com.example.paul.myapplication.ui.GoogleMaps.MapActivity;
 import com.example.paul.myapplication.ui.MainActivity;
 import com.example.paul.myapplication.ui.adapter.TrailAdapter;
 
@@ -30,8 +31,6 @@ import retrofit2.Response;
 public class GetLikeTrailName extends AppCompatActivity {
 
     private static final String TAG = "GetLikeTrailName";
-
-
     private final static String Api = "Sp-vJvuovvpQqzMiyuLGf7n-WG7e7RbF";
 
     @Override
@@ -97,6 +96,8 @@ public class GetLikeTrailName extends AppCompatActivity {
 
                 }else{
                     Toast.makeText(getApplicationContext(),"WalkName/Keyword does not match any records", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(GetLikeTrailName.this, MainActivity.class));
+
                 }
             }
 

@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -150,7 +149,8 @@ public class WalkDetails extends AppCompatActivity{
             public void onClick(View view) {
                 Intent myIntent = new Intent(WalkDetails.this, GetByCounty.class);
                 myIntent.putExtra("County", County);
-                startActivity(myIntent);            }
+                startActivity(myIntent);
+            }
         });
 
 
@@ -196,7 +196,7 @@ public class WalkDetails extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                Call<Update> completeCall = apiService.test(mlabAPi, query, requestBodyComplete);
+                Call<Update> completeCall = apiService.updateWalks(mlabAPi, query, requestBodyComplete);
                 completeCall.enqueue(new Callback<Update>() {
                     @Override
                     public void onResponse(Call<Update> call, Response<Update> response) {
@@ -217,7 +217,7 @@ public class WalkDetails extends AppCompatActivity{
         btnFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<Update> completeCall = apiService.test(mlabAPi, query, requestBodyFav);
+                Call<Update> completeCall = apiService.updateWalks(mlabAPi, query, requestBodyFav);
                 completeCall.enqueue(new Callback<Update>() {
                     @Override
                     public void onResponse(Call<Update> call, Response<Update> response) {

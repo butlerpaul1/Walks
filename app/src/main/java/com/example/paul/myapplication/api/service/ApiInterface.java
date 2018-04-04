@@ -25,25 +25,21 @@ public interface ApiInterface {
     @GET("databases/walks/collections/walks")
     Call<List<Trail>> likeWalk (@Query("q") String county,@Query("apiKey") String apiKey);
 
-
     @GET("databases/walks/collections/walks")
     Call<List<Trail>> byTrailID (@Query("q") String TrailName,@Query("apiKey") String apiKey);
 
     @GET("databases/walks/collections/user")
-    Call<List<User>> favWalks (@Query("q") String Email,@Query("apiKey") String apiKey);
+    Call<List<User>> favWalks ( @Query("q") String q,@Query("apiKey") String apiKey);
+
+    @GET("databases/walks/collections/user")
+    Call<List<User>> user (@Query("apiKey") String apiKey);
 
     @POST("databases/walks/collections/user")
     Call<User> createAccount (@Query("apiKey") String apiKey, @Body User user);
 
     @PUT("databases/walks/collections/user")
-    Call<Update> addFav (@Query("apiKey") String apiKey,@Query("q") String Email, @Body Update Query);
+    Call<Update> updateWalks(@Query("apiKey") String apiKey, @Query("q") String Email, @Body UpdateRequest Query);
 
-    @PUT("databases/walks/collections/user")
-    Call<Update> addCompleted (@Query("apiKey") String apiKey,@Query("q") String Email, @Body UpdateRequest Query);
-
-    @PUT("databases/walks/collections/user")
-    Call<Update> test (@Query("apiKey") String apiKey,@Query("q") String Email, @Body UpdateRequest Query);
-    
 
 
 }

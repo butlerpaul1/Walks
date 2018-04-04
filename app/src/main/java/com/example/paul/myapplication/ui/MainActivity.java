@@ -31,6 +31,7 @@ import com.example.paul.myapplication.ui.GoogleMaps.MapActivity;
 import com.example.paul.myapplication.ui.WalkRequests.Counties;
 import com.example.paul.myapplication.ui.WalkRequests.GetAllTrails;
 import com.example.paul.myapplication.ui.WalkRequests.GetLikeTrailName;
+import com.example.paul.myapplication.ui.WalkRequests.ViewFavWalks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
@@ -173,41 +174,29 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the home action
             startActivity(new Intent(MainActivity.this, MainActivity.class));
-
         }
         else if (id == R.id.nav_view) {
             startActivity(new Intent(MainActivity.this, GetAllTrails.class));
 
         }
-        else if (id == R.id.test_call) {
-            startActivity(new Intent(MainActivity.this, MapActivity.class));
-
+        else if (id == R.id.walkFav) {
+            startActivity(new Intent(MainActivity.this, ViewFavWalks.class));
+        }
+        else if (id == R.id.walkComplete) {
+            startActivity(new Intent(MainActivity.this, MainActivity.class));
         }
         else if (id == R.id.select_county) {
             startActivity(new Intent(MainActivity.this, Counties.class));
-
         }
-
         else if (id == R.id.nav_settings) {
             startActivity(new Intent(MainActivity.this, Settings.class));
-
-
         }
         else if (id == R.id.sign_out) {
             signOut();
         }
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-
-
-        //Bottom Nav
-
-
-
-
     }
     //sign out method
     public void signOut() {

@@ -15,9 +15,15 @@
             android:title="@string/View_All_Walks" />
 
         <item
-            android:id="@+id/test_call"
-            android:icon="@android:drawable/ic_input_add"
-            android:title="Walk Details" />
+            android:id="@+id/walkFav"
+            android:icon="@drawable/ic_favourite"
+            android:title="View Favourite Walks" />
+
+        <item
+            android:id="@+id/walkComplete"
+            android:icon="@drawable/ic_complete"
+            android:title="View Completed Walks" />
+
 
         <item
             android:id="@+id/select_county"

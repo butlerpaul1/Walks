@@ -45,6 +45,7 @@ public class WeatherActivity extends Activity implements WeatherServiceCallback 
         setContentView(R.layout.activity_weather);
 
 
+
         // get Trail Name from previous activity
         final String TrailName;
         final String Latitude;
@@ -77,6 +78,8 @@ public class WeatherActivity extends Activity implements WeatherServiceCallback 
         Log.d(TAG, Longitude);
         Log.d(TAG, Latitude);
         Log.d(TAG,County);
+
+        
 
 
             weatherIconImageView = (ImageView) findViewById(R.id.weatherIconImageView);
