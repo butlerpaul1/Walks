@@ -1,4 +1,4 @@
-package com.example.paul.myapplication.api.model;
+package com.example.paul.myapplication.api.model.mLab;
 
 import com.google.gson.annotations.SerializedName;
 

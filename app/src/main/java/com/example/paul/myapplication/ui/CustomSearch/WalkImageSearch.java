@@ -173,7 +173,7 @@ public class WalkImageSearch extends AppCompatActivity {
     public void onImageSearch(int start, String trailName) {
 
             client = new WalkImageService();
-        TrailName = trailName;
+            TrailName = trailName;
             startPage = start;
             if (startPage == 1)
                 WalkImageAdapter.clear();

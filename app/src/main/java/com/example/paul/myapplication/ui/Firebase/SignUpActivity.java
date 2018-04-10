@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.telecom.Call;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
-import com.example.paul.myapplication.api.model.User;
+import com.example.paul.myapplication.api.model.mLab.User;
 import com.example.paul.myapplication.api.service.ApiInterface;
 import com.example.paul.myapplication.api.service.MlabApiClient;
 import com.example.paul.myapplication.ui.MainActivity;
@@ -22,7 +20,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -151,7 +148,6 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"User not Created",Toast.LENGTH_LONG ).show();
             }
         });
-
 
     }
 

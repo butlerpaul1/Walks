@@ -47,18 +47,12 @@ public class Counties extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 String county = counties[i];
-
-                //String selected = "County:" +counties[i];
-                //Toast.makeText(Counties.this, selected,Toast.LENGTH_SHORT).show();
-
                 //pass county to activity
-
                 Intent myIntent = new Intent(Counties.this, GetByCounty.class);
                 myIntent.putExtra("County", county);
                 startActivity(myIntent);
             }
         });
-
     }
 
 }

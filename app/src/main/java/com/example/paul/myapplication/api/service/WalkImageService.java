@@ -1,6 +1,5 @@
 package com.example.paul.myapplication.api.service;
 
-import android.content.Context;
 import android.util.Log;
 import com.example.paul.myapplication.api.model.WalkImageFilter;
 import com.loopj.android.http.AsyncHttpClient;

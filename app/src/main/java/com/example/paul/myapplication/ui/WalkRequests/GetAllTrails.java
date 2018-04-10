@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
-import com.example.paul.myapplication.api.model.Trail;
+import com.example.paul.myapplication.api.model.mLab.Trail;
 import com.example.paul.myapplication.api.service.MlabApiClient;
 import com.example.paul.myapplication.api.service.ApiInterface;
 import com.example.paul.myapplication.ui.MainActivity;

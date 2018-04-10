@@ -2,7 +2,6 @@ package com.example.paul.myapplication.ui.WalkRequests;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,20 +11,23 @@ import com.example.paul.myapplication.R;
 import com.example.paul.myapplication.api.model.mLab.User;
 import com.example.paul.myapplication.api.service.ApiInterface;
 import com.example.paul.myapplication.api.service.MlabApiClient;
+import com.example.paul.myapplication.ui.adapter.CompletedWalksAdapter;
 import com.example.paul.myapplication.ui.adapter.UserWalksAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.GsonBuilder;
+
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by butle on 4/3/2018.
+ * Created by butle on 4/10/2018.
  */
 
-public class ViewFavWalks extends AppCompatActivity{
+public class ViewCompletedWalks extends AppCompatActivity {
 
     private static final String TAG = "ViewFavWalks";
     private static final String array = "{'favWalks':1}";
@@ -62,7 +64,7 @@ public class ViewFavWalks extends AppCompatActivity{
                 Log.w(TAG,new GsonBuilder().setPrettyPrinting().create().toJson(response));
 
                 List<User> userList = response.body();
-                recyclerView.setAdapter(new UserWalksAdapter(userList,R.layout.list_item_fav,getApplicationContext()));
+                recyclerView.setAdapter(new CompletedWalksAdapter(userList,R.layout.list_item_fav,getApplicationContext()));
             }
 
             @Override
@@ -71,6 +73,4 @@ public class ViewFavWalks extends AppCompatActivity{
             }
         });
     }
-
-
 }

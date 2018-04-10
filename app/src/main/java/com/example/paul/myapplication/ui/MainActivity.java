@@ -9,7 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,30 +18,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
-import com.example.paul.myapplication.api.model.User;
-import com.example.paul.myapplication.api.service.ApiInterface;
-import com.example.paul.myapplication.api.service.MlabApiClient;
 import com.example.paul.myapplication.ui.Firebase.LoginActivity;
 import com.example.paul.myapplication.ui.Firebase.Settings;
-import com.example.paul.myapplication.ui.GoogleMaps.MapActivity;
 import com.example.paul.myapplication.ui.WalkRequests.Counties;
 import com.example.paul.myapplication.ui.WalkRequests.GetAllTrails;
 import com.example.paul.myapplication.ui.WalkRequests.GetLikeTrailName;
+import com.example.paul.myapplication.ui.WalkRequests.ViewCompletedWalks;
 import com.example.paul.myapplication.ui.WalkRequests.ViewFavWalks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.gson.Gson;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -183,7 +169,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, ViewFavWalks.class));
         }
         else if (id == R.id.walkComplete) {
-            startActivity(new Intent(MainActivity.this, MainActivity.class));
+            startActivity(new Intent(MainActivity.this, ViewCompletedWalks.class));
         }
         else if (id == R.id.select_county) {
             startActivity(new Intent(MainActivity.this, Counties.class));

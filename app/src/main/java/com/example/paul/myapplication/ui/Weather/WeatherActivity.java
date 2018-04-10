@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
-import com.example.paul.myapplication.api.model.Channel;
-import com.example.paul.myapplication.api.model.Item;
+import com.example.paul.myapplication.api.model.yahoo.Channel;
+import com.example.paul.myapplication.api.model.yahoo.Item;
 import com.example.paul.myapplication.api.service.WeatherServiceCallback;
 import com.example.paul.myapplication.api.service.YahooWeatherService;
 import com.example.paul.myapplication.ui.CustomSearch.WalkImageSearch;
@@ -93,10 +93,7 @@ public class WeatherActivity extends Activity implements WeatherServiceCallback 
             dialog.show();
 
             final String Country = ",Ireland";
-
             String weatherLocation = County + Country;
-
-
             service.refreshWeather(weatherLocation);
 
 

@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.paul.myapplication.R;
-import com.example.paul.myapplication.api.model.Trail;
+import com.example.paul.myapplication.api.model.mLab.Trail;
 import com.example.paul.myapplication.ui.WalkRequests.WalkDetails;
 
 import java.util.List;

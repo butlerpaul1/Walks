@@ -1,9 +1,9 @@
 package com.example.paul.myapplication.api.service;
 
-import com.example.paul.myapplication.api.model.Trail;
-import com.example.paul.myapplication.api.model.Update;
-import com.example.paul.myapplication.api.model.UpdateRequest;
-import com.example.paul.myapplication.api.model.User;
+import com.example.paul.myapplication.api.model.mLab.Trail;
+import com.example.paul.myapplication.api.model.mLab.Update;
+import com.example.paul.myapplication.api.model.mLab.UpdateRequest;
+import com.example.paul.myapplication.api.model.mLab.User;
 
 import java.util.List;
 import retrofit2.Call;
@@ -16,7 +16,7 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
     //sort in order
-    @GET("databases/walks/collections/walks?s={'Trail ID':1}")
+    @GET("databases/walks/collections/walks?s={'Trail Name':1}")
     Call<List<Trail>> getTrails (@Query("apiKey") String apiKey);
 
     @GET("databases/walks/collections/walks")
@@ -32,6 +32,9 @@ public interface ApiInterface {
     Call<List<User>> favWalks ( @Query("q") String q,@Query("apiKey") String apiKey);
 
     @GET("databases/walks/collections/user")
+    Call<List<User>> completedWalks ( @Query("q") String q,@Query("apiKey") String apiKey);
+
+    @GET("databases/walks/collections/user")
     Call<List<User>> user (@Query("apiKey") String apiKey);
 
     @POST("databases/walks/collections/user")
@@ -39,7 +42,5 @@ public interface ApiInterface {
 
     @PUT("databases/walks/collections/user")
     Call<Update> updateWalks(@Query("apiKey") String apiKey, @Query("q") String Email, @Body UpdateRequest Query);
-
-
 
 }

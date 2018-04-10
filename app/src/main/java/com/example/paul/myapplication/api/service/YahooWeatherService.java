@@ -1,9 +1,10 @@
 package com.example.paul.myapplication.api.service;
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.AsyncTask;
 
 
-import com.example.paul.myapplication.api.model.Channel;
+import com.example.paul.myapplication.api.model.yahoo.Channel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +33,7 @@ public class YahooWeatherService {
         return location;
     }
 
+    @SuppressLint("StaticFieldLeak")
     public void refreshWeather(String l) {
         this.location = l;
 

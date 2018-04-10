@@ -29,7 +29,7 @@ public class WalkImageResult implements Serializable{
     public WalkImageResult(JSONObject json){
         try {
             this.fullUrl = json.getString("link");
-            this.title = json.getString("title");
+            //this.title = json.getString("title");
             this.thumbUrl = json.getJSONObject("image").getString("thumbnailLink");
         }catch (JSONException e){
             e.printStackTrace();

@@ -16,9 +16,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
-import com.example.paul.myapplication.api.model.Trail;
-import com.example.paul.myapplication.api.model.Update;
-import com.example.paul.myapplication.api.model.UpdateRequest;
+import com.example.paul.myapplication.api.model.mLab.Trail;
+import com.example.paul.myapplication.api.model.mLab.Update;
+import com.example.paul.myapplication.api.model.mLab.UpdateRequest;
 import com.example.paul.myapplication.api.service.ApiInterface;
 
 import com.example.paul.myapplication.api.service.MlabApiClient;
@@ -109,13 +109,11 @@ public class WalkDetails extends AppCompatActivity{
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        final String email = user.getEmail();
-
 
         String countyString = String.format("{'Trail Name':'%s'}" , TrailName);
         String updateFav= String.format("'$addToSet': {'favWalks': '%s'}} ", TrailName);
-
         String updateComplete = String.format("'$addToSet': {'completedWalks': '%s'}} ", TrailName);
+        final String email = user.getEmail();
         final String query =String.format("{'email': '%s'}",email) ;
 
 

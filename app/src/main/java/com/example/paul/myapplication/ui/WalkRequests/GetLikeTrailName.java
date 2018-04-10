@@ -5,16 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
-import com.example.paul.myapplication.api.model.Trail;
+import com.example.paul.myapplication.api.model.mLab.Trail;
 import com.example.paul.myapplication.api.service.MlabApiClient;
 import com.example.paul.myapplication.api.service.ApiInterface;
-import com.example.paul.myapplication.ui.GoogleMaps.MapActivity;
 import com.example.paul.myapplication.ui.MainActivity;
 import com.example.paul.myapplication.ui.adapter.TrailAdapter;
 

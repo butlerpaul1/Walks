@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.paul.myapplication.R;
-import com.example.paul.myapplication.api.model.User;
+import com.example.paul.myapplication.api.model.mLab.User;
 import java.util.List;
 /**
  * Created by butle on 4/3/2018.
@@ -27,7 +29,8 @@ public class UserWalksAdapter extends RecyclerView.Adapter<UserWalksAdapter.User
         LinearLayout usersLayout;
         TextView trailTitle;
         ImageButton delete;
-        private TrailAdapter.ItemClickListener mListener;
+
+        private ItemClickListener mListener;
 
         public UserWalkHolder(final View v)
         {
@@ -41,7 +44,7 @@ public class UserWalksAdapter extends RecyclerView.Adapter<UserWalksAdapter.User
             v.setOnLongClickListener(this);
         }
 
-        public void setClickListener(TrailAdapter.ItemClickListener listener) {
+        public void setClickListener(ItemClickListener listener) {
             this.mListener = listener;
         }
 
@@ -54,11 +57,13 @@ public class UserWalksAdapter extends RecyclerView.Adapter<UserWalksAdapter.User
             return true;
         }
     }
-
     public interface ItemClickListener {
         void onClickItem(int pos);
+
         void onLongClickItem(int pos);
+
     }
+
 
     public UserWalksAdapter (List<User> users, int rowLayout, Context context)
     {
@@ -90,6 +95,18 @@ public class UserWalksAdapter extends RecyclerView.Adapter<UserWalksAdapter.User
             Log.d("userWalksAdapter","TrailName:" + s);
             //holder.trailTitle.setText(s);
         }
+
+        //get item id on click, and pass to new activity
+        holder.setClickListener(new UserWalksAdapter.ItemClickListener() {
+            @Override public void onClickItem(int pos) {
+                Toast.makeText(context, "not yet ready", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override public void onLongClickItem(int pos) {
+                Toast.makeText(context, "not yet ready", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
