@@ -34,12 +34,14 @@
 
         <ImageButton
             android:id="@+id/mapView"
+            android:contentDescription="Click Me"
             android:layout_width="335dp"
             android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="59dp"
             android:background="@drawable/white_border"
-            android:elevation="5dp"
             android:src="@drawable/mapview" />
 
 
@@ -94,6 +96,16 @@
             android:elevation="5dp"
             app:srcCompat="@drawable/ic_favourite" />
 
+        <TextView
+            android:id="@+id/clickMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/walkComplete"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="138dp"
+            android:layout_marginStart="138dp"
+            android:text="Click Me" />
 
 
     </RelativeLayout>
