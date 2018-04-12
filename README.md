@@ -1,14 +1,13 @@
 # WalkPal
+An Android application for walkers in Ireland. It is an all in one Irish walk guide that includes:
+* Walk details
+* Directions, images
+* Near by services
+* Terrain
+* Elevation 
+* Weather updates
 
-An Android application for walkers in Ireland. It is an all in one Irish walk guide that includes walk details, directions, images, near by services, terrain , elevation and weather updates for each walk, allowing users to plan accordingly for their day out.
-
-## Home Screen
-![HomeScreen](HomeScreen.png)
-## Trail List
-![TrailsList](TrailList.png)
-## Walk Details
-![WalkDetails](WalkDetails.png)
-
+For each walk, allowing users to plan accordingly for their day out.
 
 The App uses information from a dataset that was got from Sports Ireland.  https://www.sportireland.ie/
 
