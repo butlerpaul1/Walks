@@ -19,10 +19,10 @@ public interface ApiInterface {
     @GET("databases/walks/collections/walks?s={'Trail Name':1}")
     Call<List<Trail>> getTrails (@Query("apiKey") String apiKey);
 
-    @GET("databases/walks/collections/walks")
+    @GET("databases/walks/collections/walks?s={'Trail Name':1}")
     Call<List<Trail>> byCounty (@Query("q") String county,@Query("apiKey") String apiKey);
 
-    @GET("databases/walks/collections/walks")
+    @GET("databases/walks/collections/walks?s={'Trail Name':1}")
     Call<List<Trail>> likeWalk (@Query("q") String county,@Query("apiKey") String apiKey);
 
     @GET("databases/walks/collections/walks")

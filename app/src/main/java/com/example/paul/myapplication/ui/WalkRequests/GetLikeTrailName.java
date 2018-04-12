@@ -37,18 +37,6 @@ public class GetLikeTrailName extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.app_name));
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-        setSupportActionBar(toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(GetLikeTrailName.this, MainActivity.class));
-            }
-        });
-
         // get Trail Name from previous activity
         String TrailName;
         if (savedInstanceState == null) {
@@ -63,6 +51,18 @@ public class GetLikeTrailName extends AppCompatActivity {
         }
 
         Log.d("Tag", TrailName);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Walks containing: " +TrailName);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(GetLikeTrailName.this, MainActivity.class));
+            }
+        });
 
 
         String walkString = String.format("{'Trail Name': {$regex : '%s'}}" , TrailName);
