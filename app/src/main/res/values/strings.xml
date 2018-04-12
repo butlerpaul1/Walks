@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">WalkPal</string>
+
+    <string name="completed_walks">"Completed Walks</string>
+    <string name="fav_walks">"Favourite Walks</string>
+
     <string name="mlab_api">Sp-vJvuovvpQqzMiyuLGf7n-WG7e7RbF</string>
     <string name="accu_weather_api">tCiIuvak1ZxqDc51RFKnsSlVaK7nhfJn</string>
 

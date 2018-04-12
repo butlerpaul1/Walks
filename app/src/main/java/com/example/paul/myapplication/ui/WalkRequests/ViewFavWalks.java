@@ -1,17 +1,21 @@
 package com.example.paul.myapplication.ui.WalkRequests;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
 import com.example.paul.myapplication.api.model.mLab.User;
 import com.example.paul.myapplication.api.service.ApiInterface;
 import com.example.paul.myapplication.api.service.MlabApiClient;
+import com.example.paul.myapplication.ui.MainActivity;
 import com.example.paul.myapplication.ui.adapter.UserWalksAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,6 +39,18 @@ public class ViewFavWalks extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.fav_walks));
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ViewFavWalks.this, MainActivity.class));
+            }
+        });
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String email = user.getEmail();

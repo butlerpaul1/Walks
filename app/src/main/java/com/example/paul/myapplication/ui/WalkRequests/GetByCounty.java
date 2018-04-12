@@ -40,20 +40,6 @@ public class GetByCounty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.app_name));
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-        setSupportActionBar(toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(GetByCounty.this, Counties.class));
-            }
-        });
-
-
-
         // get county from previous activity
         String County;
         if (savedInstanceState == null) {
@@ -68,6 +54,18 @@ public class GetByCounty extends AppCompatActivity {
         }
 
         Log.d("Tag", County);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(County);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(GetByCounty.this, Counties.class));
+            }
+        });
 
 
         String countyString = String.format("{'County': {$regex : '%s'}}" , County);

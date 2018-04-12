@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.paul.myapplication.R;
@@ -35,8 +37,6 @@ public class GetLikeTrailName extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
 
-
-        /*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
@@ -48,7 +48,6 @@ public class GetLikeTrailName extends AppCompatActivity {
                 startActivity(new Intent(GetLikeTrailName.this, MainActivity.class));
             }
         });
-        */
 
         // get Trail Name from previous activity
         String TrailName;

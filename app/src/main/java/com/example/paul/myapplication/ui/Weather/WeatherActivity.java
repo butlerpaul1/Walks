@@ -7,9 +7,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ import com.example.paul.myapplication.api.model.yahoo.Item;
 import com.example.paul.myapplication.api.service.WeatherServiceCallback;
 import com.example.paul.myapplication.api.service.YahooWeatherService;
 import com.example.paul.myapplication.ui.CustomSearch.WalkImageSearch;
+import com.example.paul.myapplication.ui.WalkRequests.GetByCounty;
 import com.example.paul.myapplication.ui.WalkRequests.WalkDetails;
 
 /**
@@ -95,6 +98,20 @@ public class WeatherActivity extends Activity implements WeatherServiceCallback 
             final String Country = ",Ireland";
             String weatherLocation = County + Country;
             service.refreshWeather(weatherLocation);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("WalkPal");
+        /*toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(WeatherActivity.this, GetByCounty.class);
+                myIntent.putExtra("County", County);
+                startActivity(myIntent);
+            }
+        }); */
 
 
 

@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth auth;
     private EditText mSearchText;
     private Button mButton;
+    private TextView mText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,9 @@ public class MainActivity extends AppCompatActivity
         //Widgets
         mSearchText = (EditText) findViewById(R.id.input_search);
         mButton = (Button) findViewById(R.id.butonCounties);
+        //mText = (TextView) findViewById(R.id.email);
+
+
 
         mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -91,6 +96,8 @@ public class MainActivity extends AppCompatActivity
 
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -156,6 +163,19 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
+        //get firebase auth instance
+        auth = FirebaseAuth.getInstance();
+        //get current user
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final String email = user.getEmail();
+
+
+        mText = (TextView) findViewById(R.id.email);
+        Log.d("MainActivity", "User email" + email);
+        mText.setText(email);
+
+
 
         if (id == R.id.nav_home) {
             // Handle the home action
