@@ -2,7 +2,7 @@
 An Android application for walkers in Ireland. It is an all in one Irish walk guide that includes:
 * Walk details
 * Directions, images
-* Near by services
+* Nearby services
 * Terrain
 * Elevation 
 * Weather updates
