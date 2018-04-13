@@ -44,4 +44,4 @@ The App uses information from a dataset that was got from Sports Ireland.  https
 
 [Paul Butler](https://www.linkedin.com/in/paul-butler-90b322143/)
 
-Email: c14521457@mydit.ie
+__Email:__ c14521457@mydit.ie
